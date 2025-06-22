@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "id": "better-horses",
+  "id": "betterhorses",
   "version": "${version}",
   "name": "Better Horses",
   "description": "A mod to make horses a viable means of transportation through various horse tweaks",
@@ -12,7 +12,7 @@
     "sources": "https://github.com/masonio822/Better-Horses-1.21.1"
   },
   "license": "CC0-1.0",
-  "icon": "assets/better-horses/icon.png",
+  "icon": "assets/betterhorses/icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [
@@ -26,7 +26,7 @@
     ]
   },
   "mixins": [
-    "better-horses.mixins.json"
+    "betterhorses.mixins.json"
   ],
   "depends": {
     "fabricloader": ">=0.16.10",

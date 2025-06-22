@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "minecraft:iron_bars"
+    },
+    "-": {
+      "item": "minecraft:chain"
+    },
+    "=": {
+      "item": "minecraft:iron_ingot"
+    },
+    "0": {
+      "item": "minecraft:barrel"
+    }
+  },
+  "pattern": [
+    "---",
+    "#0#",
+    "==="
+  ],
+  "result": {
+    "count": 1,
+    "id": "better_horses:horsebox"
+  }
+}
