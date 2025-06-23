@@ -1,6 +1,6 @@
 {
-  "item.better_horses.horsebox": "Horsebox",
-  "sounds.better_horses.horsebox_unzip": "Horsebox zips",
+  "item.betterhorses.horsebox": "Horsebox",
+  "sounds.betterhorses.horsebox_unzip": "Horsebox zips",
   "color.minecraft.horse.white": "White",
   "color.minecraft.horse.0": "White",
   "color.minecraft.horse.1": "Creamy",
@@ -14,8 +14,8 @@
   "marking.minecraft.horse.2": "White Field",
   "marking.minecraft.horse.3": "White Dots",
   "marking.minecraft.horse.4": "Black Dots",
-  "tooltip.better_horses.color": "Color: ",
-  "tooltip.better_horses.marking": "Marking: ",
-  "item.better_horses.breeding_chart": "Breeding Chart",
-  "tag.item.better_horses.horse_armor": "Horse Armors"
+  "tooltip.betterhorses.color": "Color: ",
+  "tooltip.betterhorses.marking": "Marking: ",
+  "item.betterhorses.breeding_chart": "Breeding Chart",
+  "tag.item.betterhorses.horse_armor": "Horse Armors"
 }

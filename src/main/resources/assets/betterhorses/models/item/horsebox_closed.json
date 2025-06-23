@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "better_horses:item/breeding_chart"
+    "layer0": "betterhorses:item/horsebox_closed"
   }
 }

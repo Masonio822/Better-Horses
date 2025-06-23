@@ -1,14 +1,14 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "better_horses:item/horsebox_open"
+    "layer0": "betterhorses:item/horsebox_open"
   },
   "overrides": [
     {
       "predicate": {
         "better_horses:closed": 1
       },
-      "model": "better_horses:item/horsebox_closed"
+      "model": "betterhorses:item/horsebox_closed"
     }
   ]
 }
