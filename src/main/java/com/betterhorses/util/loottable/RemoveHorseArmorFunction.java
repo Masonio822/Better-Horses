@@ -38,20 +38,23 @@ public class RemoveHorseArmorFunction implements LootFunction {
     @Override
     public ItemStack apply(ItemStack itemStack, LootContext lootContext) {
         Random r = new Random();
-        ItemStack sub = ItemStack.EMPTY;
-        sub.setCount(r.nextInt(3, 7));
+        ItemStack sub;
 
         if (itemStack.isOf(Items.LEATHER_HORSE_ARMOR)) {
             sub = new ItemStack(Items.LEATHER);
+            sub.setCount(r.nextInt(0, 4));
             return sub;
         } else if (itemStack.isOf(Items.IRON_HORSE_ARMOR)) {
             sub = new ItemStack(Items.IRON_INGOT);
+            sub.setCount(r.nextInt(0, 4));
             return sub;
         } else if (itemStack.isOf(Items.GOLDEN_HORSE_ARMOR)) {
             sub = new ItemStack(Items.GOLD_INGOT);
+            sub.setCount(r.nextInt(0, 4));
             return sub;
         } else if (itemStack.isOf(Items.DIAMOND_HORSE_ARMOR)) {
             sub = new ItemStack(Items.DIAMOND);
+            sub.setCount(r.nextInt(0, 4));
             return sub;
         }
 
