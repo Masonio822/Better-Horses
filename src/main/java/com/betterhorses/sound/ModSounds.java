@@ -6,6 +6,11 @@ import net.minecraft.registry.Registry;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
 
+/**
+ * Basic class to register custom sounds for the mod
+ *
+ * @see SoundEvent
+ */
 public class ModSounds {
 
     public static final SoundEvent HORSEBOX_UNZIP = register("horsebox_unzip");

@@ -1,6 +1,7 @@
 package com.betterhorses.horse;
 
 import com.betterhorses.item.ModItems;
+import com.betterhorses.mixin.AbstractHorseMixin;
 import com.betterhorses.sound.ModSounds;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -11,11 +12,22 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
 
+/**
+ * Interface for the {@link AbstractHorseMixin} to allow the boxable entity's NBT data to be
+ * saved and written. Also includes a method to box the entity.
+ * Modeled after {@link net.minecraft.entity.Bucketable}
+ *
+ * @see com.betterhorses.item.HorseboxItem
+ * @see net.minecraft.entity.Bucketable
+ * @see AbstractHorseMixin
+ */
+
 public interface Boxable {
     void copyDataToStack(ItemStack stack);
 
     void copyDataFromNbt(NbtCompound nbt);
 
+    //TODO Use the item in creative mode too
     static <T extends LivingEntity & Boxable> ActionResult tryBox(PlayerEntity player, Hand hand, T entity) {
         ItemStack itemStack = player.getStackInHand(hand);
         if (itemStack.getItem() == ModItems.HORSEBOX && entity.isAlive()) {

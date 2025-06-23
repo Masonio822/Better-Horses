@@ -8,7 +8,11 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
-
+/**
+ * Screen to view the stats of {@link com.betterhorses.horse.Chartable} entities.
+ *
+ * @see com.betterhorses.item.BreedingChartItem
+ */
 public class BreedingChartScreen extends Screen {
 
     private static final Identifier CLIPBOARD_TEXTURE = Identifier.of(BetterHorses.MOD_ID, "textures/gui/clipboard.png");

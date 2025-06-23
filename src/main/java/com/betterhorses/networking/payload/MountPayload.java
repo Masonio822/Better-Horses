@@ -6,6 +6,11 @@ import net.minecraft.network.codec.PacketCodec;
 import net.minecraft.network.codec.PacketCodecs;
 import net.minecraft.network.packet.CustomPayload;
 
+/**
+ * Custom payload to change the perspective of the client when mounted/dismounted
+ *
+ * @param mounted whether the action is mount or dismount
+ */
 public record MountPayload(boolean mounted) implements CustomPayload {
     public static final CustomPayload.Id<MountPayload> ID = new CustomPayload.Id<>(NetworkConstants.MOUNT_PACKET_ID);
 

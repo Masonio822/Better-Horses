@@ -10,6 +10,14 @@ import net.minecraft.loot.function.LootFunctionType;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 
+/**
+ * Singleton class extending {@link LootFunction} to define a specific change to loot tables.
+ * This function removes all saddles and replaces it with various amounts of leather
+ *
+ * @see net.minecraft.item.SaddleItem
+ * @see net.minecraft.loot.LootTable
+ * @see LootTableModifer
+ */
 public class RemoveSaddlesFunction implements LootFunction {
     public static final RemoveSaddlesFunction INSTANCE = new RemoveSaddlesFunction();
     private static final MapCodec<RemoveSaddlesFunction> CODEC = MapCodec.unit(RemoveSaddlesFunction.INSTANCE);

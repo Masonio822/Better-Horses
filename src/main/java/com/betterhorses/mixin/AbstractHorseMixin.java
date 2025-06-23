@@ -25,7 +25,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 /**
- * Mixin for the Horse Entity Class in Minecraft
+ * Mixin for the {@link AbstractHorseEntity}.
+ * Adds most of the custom behavior for the horses
  *
  * @see HorseEntity
  * @see com.betterhorses.horse.Boxable
@@ -54,6 +55,12 @@ public abstract class AbstractHorseMixin extends AnimalEntity implements Boxable
         this.readNbt(nbt);
     }
 
+    /**
+     * Sends a payload to the client to tell it to change the perspective to the mounted perspective defined in the config
+     *
+     * @param player Player to change the perspective of
+     */
+    //TODO Make perspective configurable
     @Inject(at = @At("HEAD"), method = "putPlayerOnBack")
     private void changePerspectiveOnMount(PlayerEntity player, CallbackInfo info) {
         if (!player.getWorld().isClient()) {

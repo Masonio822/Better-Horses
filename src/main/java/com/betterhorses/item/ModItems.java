@@ -9,6 +9,13 @@ import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
 
+
+/**
+ * Standard class for registering mod items
+ *
+ * @see HorseboxItem
+ * @see BreedingChartItem
+ */
 public class ModItems {
 
     public static final Item HORSEBOX = registerItem("horsebox", new HorseboxItem(new Item.Settings().rarity(Rarity.UNCOMMON).maxCount(1)));

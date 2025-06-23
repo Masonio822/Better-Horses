@@ -11,6 +11,11 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 
+/**
+ * Simple item to show various stats of a {@link Chartable} entity
+ *
+ * @see net.minecraft.entity.passive.AbstractHorseEntity
+ */
 public class BreedingChartItem extends Item {
     public BreedingChartItem(Settings settings) {
         super(settings);

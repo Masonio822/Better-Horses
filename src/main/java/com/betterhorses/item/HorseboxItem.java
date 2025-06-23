@@ -30,11 +30,25 @@ import net.minecraft.world.event.GameEvent;
 
 import java.util.List;
 
+/**
+ * Custom item class that creates a way to transport {@link Boxable} entities
+ *
+ * @see ModItems
+ * @see net.minecraft.item.Item
+ */
+
 public class HorseboxItem extends Item {
     public HorseboxItem(Settings settings) {
         super(settings);
     }
 
+    /**
+     * Core method to put the entity in the Horsebox
+     *
+     * @param stack  the itemstack the player is using
+     * @param user   the player using the item
+     * @param entity the entity being boxed
+     */
     @Override
     public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
         if (stack.getComponents().contains(ModDataComponents.BOX_ENTITY_DATA)) {
@@ -47,7 +61,12 @@ public class HorseboxItem extends Item {
         return ActionResult.PASS;
     }
 
-
+    /**
+     * Core method to release the entity from the Horsebox
+     *
+     * @param world the world to spawn the entity
+     * @param user  the user spawning the entity
+     */
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         if (user.getStackInHand(hand).getComponents().get(ModDataComponents.BOX_ENTITY_DATA) != null && world instanceof ServerWorld serverWorld) {
@@ -86,12 +105,22 @@ public class HorseboxItem extends Item {
         return TypedActionResult.pass(user.getStackInHand(hand));
     }
 
+    /**
+     * Locates a safe space to load the entity. The entity should be placed in a 1 block radius of the player
+     *
+     * @param playerLoc the location of the player
+     * @param horse     the entity to be loaded
+     * @return A safe position for the entity to be spawned
+     */
     private BlockPos locateSummonPos(BlockPos playerLoc, AbstractHorseEntity horse) {
-        
+
 
         return playerLoc;
     }
 
+    /**
+     * Small class to stop the horse from bucking on spawn
+     */
     public static class CalmTimer implements ServerTickEvents.EndTick {
         public static final CalmTimer INSTANCE = new CalmTimer();
 
@@ -113,6 +142,13 @@ public class HorseboxItem extends Item {
             ServerTickEvents.END_SERVER_TICK.register(INSTANCE);
         }
     }
+
+    /**
+     * Adds info about the current entity to the tooltip
+     *
+     * @param stack   the itemstack
+     * @param tooltip the list of tooltips to show
+     */
 
     @Override
     public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {

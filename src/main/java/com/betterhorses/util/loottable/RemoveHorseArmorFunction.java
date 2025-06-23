@@ -12,6 +12,14 @@ import net.minecraft.registry.Registry;
 
 import java.util.Random;
 
+/**
+ * Singleton class extending {@link LootFunction} to define a specific change to loot tables.
+ * This function removes all horse armor from loot tables and replaces it with various amounts of the material of the armor.
+ *
+ * @see net.minecraft.item.AnimalArmorItem
+ * @see net.minecraft.loot.LootTable
+ * @see LootTableModifer
+ */
 public class RemoveHorseArmorFunction implements LootFunction {
     public static final RemoveHorseArmorFunction INSTANCE = new RemoveHorseArmorFunction();
     private static final MapCodec<RemoveHorseArmorFunction> CODEC = MapCodec.unit(RemoveHorseArmorFunction.INSTANCE);

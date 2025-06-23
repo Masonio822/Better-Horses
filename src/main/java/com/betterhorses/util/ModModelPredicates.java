@@ -5,6 +5,11 @@ import com.betterhorses.item.ModItems;
 import net.minecraft.client.item.ModelPredicateProviderRegistry;
 import net.minecraft.util.Identifier;
 
+/**
+ * Basic class to register custom item models
+ *
+ * @see com.betterhorses.item.HorseboxItem
+ */
 public class ModModelPredicates {
     public static void registerModelPredicates() {
         ModelPredicateProviderRegistry.register(ModItems.HORSEBOX, Identifier.of(BetterHorses.MOD_ID, "closed"),

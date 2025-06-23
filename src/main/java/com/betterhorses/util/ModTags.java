@@ -6,6 +6,9 @@ import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Identifier;
 
+/**
+ * Defines various utility tags for the mod
+ */
 public class ModTags {
     public static class Items {
         public static final TagKey<Item> HORSE_ARMOR = createTag("horse_armor");
