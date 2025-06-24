@@ -1,7 +1,6 @@
 package com.betterhorses.mixin;
 
 import com.betterhorses.horse.Boxable;
-import com.betterhorses.horse.Chartable;
 import com.betterhorses.networking.payload.MountPayload;
 import com.betterhorses.util.ModDataComponents;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
@@ -33,7 +32,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
  */
 
 @Mixin(AbstractHorseEntity.class)
-public abstract class AbstractHorseMixin extends AnimalEntity implements Boxable, Chartable {
+public abstract class AbstractHorseMixin extends AnimalEntity implements Boxable {
 
     protected AbstractHorseMixin(EntityType<? extends AbstractHorseEntity> entityType, World world) {
         super(entityType, world);
