@@ -9,7 +9,7 @@ import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.option.Perspective;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.passive.AbstractHorseEntity;
 
 
 public class BetterHorsesClient implements ClientModInitializer {
@@ -19,7 +19,7 @@ public class BetterHorsesClient implements ClientModInitializer {
         //Breeding Chart Packet Register
         ClientPlayNetworking.registerGlobalReceiver(BreedingChartPayload.ID, (payload, context) -> context.client().execute(() -> {
             Entity entity = MinecraftClient.getInstance().player.getWorld().getEntityById(payload.entityId());
-            context.client().setScreen(new BreedingChartScreen(entity.getName(), (LivingEntity) entity));
+            context.client().setScreen(new BreedingChartScreen(entity.getName(), (AbstractHorseEntity) entity));
         }));
         //Mount Packet Register
         ClientPlayNetworking.registerGlobalReceiver(MountPayload.ID, (payload, context) -> context.client().execute(() -> {

@@ -17,5 +17,12 @@
   "tooltip.betterhorses.color": "Color: ",
   "tooltip.betterhorses.marking": "Marking: ",
   "item.betterhorses.breeding_chart": "Breeding Chart",
-  "tag.item.betterhorses.horse_armor": "Horse Armors"
+  "tag.item.betterhorses.horse_armor": "Horse Armors",
+  "text.betterhorses.info": "Info",
+  "text.betterhorses.name": "Name: %s",
+  "text.betterhorses.type": "Type: %s",
+  "text.betterhorses.attribute": "Attributes",
+  "text.betterhorses.health": "Health: %s h",
+  "text.betterhorses.speed": "Speed: %s b/s",
+  "text.betterhorses.jump": "Jump Height: %s b"
 }

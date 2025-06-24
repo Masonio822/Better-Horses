@@ -91,6 +91,10 @@ public class HorseboxItem extends Item {
                 nbtComponent = nbtComponent.apply((compound) -> compound.put("Pos", posList));
                 boxable.copyDataFromNbt(nbtComponent.copyNbt());
 
+                if (user.isCreative()) {
+                    user.setStackInHand(hand, ItemStack.EMPTY);
+                }
+
                 CalmTimer.INSTANCE.horse = horse;
                 horse.setAngry(true);
                 horse.playSound(SoundEvents.ENTITY_HORSE_ANGRY);
@@ -161,19 +165,18 @@ public class HorseboxItem extends Item {
         int baseColor = variant & 0xFF;
         int marking = (variant >> 8) & 0xFF;
 
-        Formatting format = Formatting.GRAY;
         String colorStr = "color.minecraft.horse." + baseColor;
         String markStr = "marking.minecraft.horse." + marking;
 
         tooltip.add(
-                Text.translatable("tooltip.better_horses.color")
+                Text.translatable("tooltip.betterhorses.color")
                         .append(Text.translatable(colorStr))
-                        .formatted(format)
+                        .formatted(Formatting.GRAY)
         );
         tooltip.add(
-                Text.translatable("tooltip.better_horses.marking")
+                Text.translatable("tooltip.betterhorses.marking")
                         .append(Text.translatable(markStr))
-                        .formatted(format)
+                        .formatted(Formatting.GRAY)
         );
     }
 }

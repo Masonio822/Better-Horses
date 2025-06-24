@@ -26,6 +26,7 @@ public class BreedingChartItem extends Item {
         if (user.getWorld().isClient()) {
             return super.useOnEntity(stack, user, entity, hand);
         }
+        //TODO change design pattern to use AbstractHorseEntity instead of Chartable
         if (entity instanceof Chartable) {
             //Send the packet to change the client's screen
             ServerPlayNetworking.send((ServerPlayerEntity) user, new BreedingChartPayload(entity.getId()));
