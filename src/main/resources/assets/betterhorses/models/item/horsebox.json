@@ -6,7 +6,7 @@
   "overrides": [
     {
       "predicate": {
-        "better_horses:closed": 1
+        "betterhorses:closed": 1
       },
       "model": "betterhorses:item/horsebox_closed"
     }

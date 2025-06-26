@@ -118,8 +118,6 @@ public class HorseboxItem extends Item {
      */
     //TODO make the method LOL
     private BlockPos locateSummonPos(BlockPos playerLoc, AbstractHorseEntity horse) {
-
-
         return playerLoc;
     }
 
