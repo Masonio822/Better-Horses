@@ -1,6 +1,7 @@
 package com.betterhorses.mixin;
 
 import com.betterhorses.horse.Boxable;
+import com.betterhorses.horse.TrackedParents;
 import com.betterhorses.networking.payload.MountPayload;
 import com.betterhorses.util.ModDataComponents;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
@@ -27,7 +28,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import java.util.List;
+import java.util.Arrays;
 
 /**
  * Mixin for the {@link AbstractHorseEntity}.
@@ -41,11 +42,10 @@ import java.util.List;
 @Mixin(AbstractHorseEntity.class)
 public abstract class AbstractHorseMixin extends AnimalEntity implements Boxable, TrackedParents<AbstractHorseEntity> {
     @Unique
-    private List<AbstractHorseEntity[]> breedingHistory;
+    private AbstractHorseEntity[] parents = new AbstractHorseEntity[2];
 
     protected AbstractHorseMixin(EntityType<? extends AbstractHorseEntity> entityType, World world) {
         super(entityType, world);
-        breedingHistory = List.of();
     }
 
     @Override
@@ -92,25 +92,20 @@ public abstract class AbstractHorseMixin extends AnimalEntity implements Boxable
         super.breed(world, other, baby);
         if (baby instanceof AbstractHorseEntity ab && other instanceof AbstractHorseEntity) {
             TrackedParents<AbstractHorseEntity> horseBaby = (TrackedParents<AbstractHorseEntity>) ab;
-            horseBaby.addParents((AbstractHorseEntity) (Object) this, (AbstractHorseEntity) other);
+            horseBaby.setParents((AbstractHorseEntity) (Object) this, (AbstractHorseEntity) other);
+            System.out.println(Arrays.toString(horseBaby.getParents()));
         }
     }
 
     @Override
     @Unique
-    public void addParents(AbstractHorseEntity horse1, AbstractHorseEntity horse2) {
-        this.breedingHistory.add(new AbstractHorseEntity[]{horse1, horse2});
-    }
-
-    @Override
-    @Unique
-    public List<AbstractHorseEntity[]> getHistory() {
-        return this.breedingHistory;
+    public void setParents(AbstractHorseEntity horse1, AbstractHorseEntity horse2) {
+        this.parents = new AbstractHorseEntity[]{horse1, horse2};
     }
 
     @Override
     @Unique
     public AbstractHorseEntity[] getParents() {
-        return this.breedingHistory.getLast();
+        return this.parents;
     }
 }
