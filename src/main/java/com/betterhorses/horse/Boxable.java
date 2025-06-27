@@ -27,7 +27,6 @@ public interface Boxable {
 
     void copyDataFromNbt(NbtCompound nbt);
 
-    //TODO Use the item in creative mode too
     static <T extends LivingEntity & Boxable> ActionResult tryBox(PlayerEntity player, Hand hand, T entity) {
         ItemStack itemStack = player.getStackInHand(hand);
         if (itemStack.getItem() == ModItems.HORSEBOX && entity.isAlive()) {
@@ -39,9 +38,9 @@ public interface Boxable {
             //Swap the empty horsebox with the new one
             ItemStack exchange = ItemUsage.exchangeStack(itemStack, player, boxItem, false);
             player.setStackInHand(hand, exchange);
-            World world = entity.getWorld();
 
             //Delete the entity afterward
+            World world = entity.getWorld();
             entity.discard();
             return ActionResult.success(world.isClient);
         } else {

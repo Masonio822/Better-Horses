@@ -5,6 +5,7 @@
   "mixins": [
     "AbstractHorseMixin",
     "AnimalArmorMixin",
+    "AnimalEntityMixin",
     "AnvilMixin"
   ],
   "injectors": {

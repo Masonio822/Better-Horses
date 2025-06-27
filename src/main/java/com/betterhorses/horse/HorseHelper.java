@@ -36,4 +36,12 @@ public class HorseHelper {
             return Formatting.DARK_GRAY;
         }
     }
+
+    public static int getColor(int variant) {
+        return variant & 0xFF;
+    }
+
+    public static int getMarkings(int variant) {
+        return (variant >> 8) & 0xFF;
+    }
 }

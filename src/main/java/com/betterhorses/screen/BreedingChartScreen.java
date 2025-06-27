@@ -2,17 +2,20 @@ package com.betterhorses.screen;
 
 import com.betterhorses.BetterHorses;
 import com.betterhorses.horse.HorseHelper;
-import com.betterhorses.mixin.TrackedParents;
+import com.betterhorses.horse.TrackedParents;
 import com.betterhorses.screen.widget.PageWidget;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.ingame.InventoryScreen;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.passive.AbstractHorseEntity;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
+
+import java.util.Arrays;
 
 /**
  * Screen to view the stats of {@link AbstractHorseEntity}.
@@ -33,6 +36,7 @@ public class BreedingChartScreen extends Screen {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
         super.render(context, mouseX, mouseY, delta);
 
@@ -43,7 +47,7 @@ public class BreedingChartScreen extends Screen {
 
         switch (currentPage) {
             case STATISTIC -> {
-                InventoryScreen.drawEntity(context, midX + 7, midY - 80, midX + 7 + 60, midY - 80 + 60, 20, 0.25F, (float) mouseX, (float) mouseX, this.horse);
+                InventoryScreen.drawEntity(context, midX + 7, midY - 80, midX + 7 + 60, midY - 80 + 60, 20, 0.25F, (float) mouseX + 50, (float) mouseX, this.horse);
 
                 context.drawText(
                         this.textRenderer,
@@ -107,11 +111,39 @@ public class BreedingChartScreen extends Screen {
                         0,
                         false
                 );
+
+                context.drawText(
+                        this.textRenderer,
+                        Text.translatable("text.betterhorses.coloration").formatted(Formatting.BLACK, Formatting.BOLD, Formatting.UNDERLINE),
+                        textX,
+                        textY + 115,
+                        0,
+                        false
+                );
+
+                int variant = horse.writeNbt(new NbtCompound()).getInt("Variant");
+                context.drawText(
+                        this.textRenderer,
+                        Text.translatable("tooltip.betterhorses.color").append(Text.translatable("color.minecraft.horse." + HorseHelper.getColor(variant))),
+                        textX,
+                        textY + 130,
+                        0,
+                        false
+                );
+
+                context.drawText(
+                        this.textRenderer,
+                        Text.translatable("tooltip.betterhorses.marking").append(Text.translatable("marking.minecraft.horse." + HorseHelper.getMarkings(variant))),
+                        textX,
+                        textY + 145,
+                        0,
+                        false
+                );
             }
 
             case ANCESTRY -> {
                 TrackedParents<AbstractHorseEntity> coolHorse = (TrackedParents<AbstractHorseEntity>) horse;
-                System.out.println(coolHorse.getHistory());
+                System.out.println(Arrays.toString(coolHorse.getParents()));
             }
         }
     }

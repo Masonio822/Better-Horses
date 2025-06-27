@@ -1,6 +1,7 @@
 package com.betterhorses.item;
 
 import com.betterhorses.horse.Boxable;
+import com.betterhorses.horse.HorseHelper;
 import com.betterhorses.util.ModDataComponents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.minecraft.component.type.NbtComponent;
@@ -161,11 +162,9 @@ public class HorseboxItem extends Item {
         }
 
         int variant = nbtComponent.copyNbt().getInt("Variant");
-        int baseColor = variant & 0xFF;
-        int marking = (variant >> 8) & 0xFF;
 
-        String colorStr = "color.minecraft.horse." + baseColor;
-        String markStr = "marking.minecraft.horse." + marking;
+        String colorStr = "color.minecraft.horse." + HorseHelper.getColor(variant);
+        String markStr = "marking.minecraft.horse." + HorseHelper.getMarkings(variant);
 
         tooltip.add(
                 Text.translatable("tooltip.betterhorses.color")

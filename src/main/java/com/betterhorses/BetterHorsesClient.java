@@ -14,7 +14,7 @@ import net.minecraft.entity.passive.AbstractHorseEntity;
 
 public class BetterHorsesClient implements ClientModInitializer {
     @Override
-    @SuppressWarnings("null")
+    @SuppressWarnings("DataFlowIssue")
     public void onInitializeClient() {
         //Breeding Chart Packet Register
         ClientPlayNetworking.registerGlobalReceiver(BreedingChartPayload.ID, (payload, context) -> context.client().execute(() -> {

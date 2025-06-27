@@ -1,7 +1,6 @@
 {
   "item.betterhorses.horsebox": "Horsebox",
   "sounds.betterhorses.horsebox_unzip": "Horsebox zips",
-  "color.minecraft.horse.white": "White",
   "color.minecraft.horse.0": "White",
   "color.minecraft.horse.1": "Creamy",
   "color.minecraft.horse.2": "Chestnut",
@@ -24,5 +23,6 @@
   "text.betterhorses.attribute": "Attributes",
   "text.betterhorses.health": "Health: %s h",
   "text.betterhorses.speed": "Speed: %s b/s",
-  "text.betterhorses.jump": "Jump Height: %s b"
+  "text.betterhorses.jump": "Jump Height: %s b",
+  "text.betterhorses.coloration": "Coloration"
 }
