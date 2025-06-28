@@ -19,12 +19,22 @@ public abstract class AnimalEntityMixin extends PassiveEntity {
         super(entityType, world);
     }
 
-    @SuppressWarnings({"unchecked", "ConstantValue"})
+    @SuppressWarnings({"ConstantValue"})
     @Inject(at = @At("TAIL"), method = "breed(Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/entity/passive/AnimalEntity;Lnet/minecraft/entity/passive/PassiveEntity;)V")
     private void saveParents(ServerWorld world, AnimalEntity other, PassiveEntity baby, CallbackInfo ci) {
         if (baby instanceof AbstractHorseEntity && other instanceof AbstractHorseEntity && (AnimalEntity) (Object) this instanceof AbstractHorseEntity) {
             NbtCompound nbt = baby.writeNbt(new NbtCompound());
-            nbt.put("Parents", )
+
+            NbtCompound thisNbt = this.writeNbt(new NbtCompound());
+            NbtCompound addThis = new NbtCompound();
+
+            NbtList thisAttributes = new NbtList();
+            NbtCompound th = new NbtCompound();
+
+            thisAttributes.add(new NbtCompound().putFloat());
+
+
+            baby.readNbt(nbt);
         }
     }
 }
