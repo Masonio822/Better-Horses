@@ -41,10 +41,11 @@ import java.util.List;
 @Mixin(AbstractHorseEntity.class)
 public abstract class AbstractHorseMixin extends AnimalEntity implements Boxable, TrackedParents<AbstractHorseEntity> {
     @Unique
-    private AbstractHorseEntity[] parents = new AbstractHorseEntity[2];
+    private List<AbstractHorseEntity[]> breedingHistory;
 
     protected AbstractHorseMixin(EntityType<? extends AbstractHorseEntity> entityType, World world) {
         super(entityType, world);
+        breedingHistory = List.of();
     }
 
     @Override
