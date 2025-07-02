@@ -14,6 +14,7 @@ import net.minecraft.entity.passive.HorseEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.nbt.NbtElement;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
@@ -35,6 +36,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @SuppressWarnings("AddedMixinMembersNamePattern")
 @Mixin(AbstractHorseEntity.class)
 public abstract class AbstractHorseMixin extends AnimalEntity implements Boxable {
+
+    NbtElement parents = new NbtCompound();
+
     protected AbstractHorseMixin(EntityType<? extends AbstractHorseEntity> entityType, World world) {
         super(entityType, world);
     }
@@ -75,5 +79,15 @@ public abstract class AbstractHorseMixin extends AnimalEntity implements Boxable
         if (passenger instanceof PlayerEntity player) {
             ServerPlayNetworking.send((ServerPlayerEntity) player, new MountPayload(false));
         }
+    }
+
+    @Inject(at = @At("RETURN"), method = "readCustomDataFromNbt")
+    private void readParents(NbtCompound nbt, CallbackInfo ci) {
+        parents = nbt.get("Parents");
+    }
+
+    @Inject(at = @At("RETURN"), method = "writeCustomDataToNbt")
+    private void writeParents(NbtCompound nbt, CallbackInfo ci) {
+        nbt.put("Parents", parents);
     }
 }

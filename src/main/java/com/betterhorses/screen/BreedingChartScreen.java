@@ -6,11 +6,9 @@ import com.betterhorses.screen.widget.PageWidget;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.ingame.InventoryScreen;
-import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.passive.AbstractHorseEntity;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtList;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
@@ -140,18 +138,10 @@ public class BreedingChartScreen extends Screen {
             }
 
             case ANCESTRY -> {
-                NbtCompound horseNbt = new NbtCompound();
-                horse.writeNbt(horseNbt);
-                NbtList uuids = horseNbt.getList("Parents", 9);
+                NbtCompound horseNbt = horse.writeNbt(new NbtCompound());
+                AbstractHorseEntity horse1, horse2;
 
-                AbstractHorseEntity horse1 = null;
-                AbstractHorseEntity horse2 = null;
-
-                if (horse.getWorld() instanceof ClientWorld world) {
-
-                }
-                System.out.println(horse1);
-                System.out.println(horse2);
+                System.out.println(horseNbt.get("Parents"));
             }
         }
     }
