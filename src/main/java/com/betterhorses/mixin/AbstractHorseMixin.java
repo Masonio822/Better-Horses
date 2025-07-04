@@ -1,5 +1,6 @@
 package com.betterhorses.mixin;
 
+import com.betterhorses.duck.TrackedParents;
 import com.betterhorses.horse.Boxable;
 import com.betterhorses.networking.payload.MountPayload;
 import com.betterhorses.util.ModDataComponents;
@@ -8,6 +9,10 @@ import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.NbtComponent;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.attribute.EntityAttributes;
+import net.minecraft.entity.data.DataTracker;
+import net.minecraft.entity.data.TrackedData;
+import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.passive.AbstractHorseEntity;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.HorseEntity;
@@ -15,9 +20,12 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
+import net.minecraft.nbt.NbtList;
+import net.minecraft.nbt.NbtString;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -35,9 +43,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @SuppressWarnings("AddedMixinMembersNamePattern")
 @Mixin(AbstractHorseEntity.class)
-public abstract class AbstractHorseMixin extends AnimalEntity implements Boxable {
+public abstract class AbstractHorseMixin extends AnimalEntity implements Boxable, TrackedParents {
 
-    NbtElement parents = new NbtCompound();
+    private static final TrackedData<String> PARENTS = DataTracker.registerData(AbstractHorseEntity.class, TrackedDataHandlerRegistry.STRING);
 
     protected AbstractHorseMixin(EntityType<? extends AbstractHorseEntity> entityType, World world) {
         super(entityType, world);
@@ -83,11 +91,60 @@ public abstract class AbstractHorseMixin extends AnimalEntity implements Boxable
 
     @Inject(at = @At("RETURN"), method = "readCustomDataFromNbt")
     private void readParents(NbtCompound nbt, CallbackInfo ci) {
-        parents = nbt.get("Parents");
+        this.dataTracker.set(PARENTS, nbt.contains("Parents") ? nbt.get("Parents").asString() : "");
     }
 
     @Inject(at = @At("RETURN"), method = "writeCustomDataToNbt")
     private void writeParents(NbtCompound nbt, CallbackInfo ci) {
+        if (this.dataTracker.get(PARENTS) != null || this.dataTracker.get(PARENTS).isEmpty()) {
+            nbt.putString("Parents", this.dataTracker.get(PARENTS));
+        }
+    }
+
+    @Override
+    @Nullable
+    public NbtElement getParentsNbt() {
+        return NbtString.of(this.dataTracker.get(PARENTS));
+    }
+
+    @Override
+    public void setParentsNbt(NbtCompound parentsNbt) {
+        this.dataTracker.set(PARENTS, parentsNbt.asString());
+    }
+
+    @Override
+    public void setParents(AbstractHorseEntity horse1, AbstractHorseEntity horse2) {
+        NbtCompound nbt = this.writeNbt(new NbtCompound());
+
+        NbtCompound addThis = new NbtCompound();
+        addThis.putInt("Variant", horse1.writeNbt(new NbtCompound()).getInt("Variant"));
+
+        NbtCompound thisAttributes = new NbtCompound();
+        thisAttributes.putDouble("Health", horse1.getAttributes().getValue(EntityAttributes.GENERIC_MAX_HEALTH));
+        thisAttributes.putDouble("Speed", horse1.getAttributes().getValue(EntityAttributes.GENERIC_MOVEMENT_SPEED));
+        thisAttributes.putDouble("Jump", horse1.getAttributes().getValue(EntityAttributes.GENERIC_JUMP_STRENGTH));
+        addThis.put("Attributes", thisAttributes);
+
+        NbtCompound addOther = new NbtCompound();
+        addOther.putInt("Variant", horse2.writeNbt(new NbtCompound()).getInt("Variant"));
+
+        NbtCompound otherAttributes = new NbtCompound();
+        otherAttributes.putDouble("Health", horse2.getAttributes().getValue(EntityAttributes.GENERIC_MAX_HEALTH));
+        otherAttributes.putDouble("Speed", horse2.getAttributes().getValue(EntityAttributes.GENERIC_MOVEMENT_SPEED));
+        otherAttributes.putDouble("Jump", horse2.getAttributes().getValue(EntityAttributes.GENERIC_JUMP_STRENGTH));
+        addOther.put("Attributes", otherAttributes);
+
+        NbtList parents = new NbtList();
+        parents.add(addThis);
+        parents.add(addOther);
         nbt.put("Parents", parents);
+
+        NbtComponent.of(nbt).applyToEntity(this);
+        this.setParentsNbt(nbt);
+    }
+
+    @Inject(at = @At("TAIL"), method = "initDataTracker")
+    private void addParentTracker(DataTracker.Builder builder, CallbackInfo callbackInfo) {
+        builder.add(PARENTS, "");
     }
 }

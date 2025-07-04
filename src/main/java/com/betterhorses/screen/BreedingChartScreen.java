@@ -1,6 +1,7 @@
 package com.betterhorses.screen;
 
 import com.betterhorses.BetterHorses;
+import com.betterhorses.duck.TrackedParents;
 import com.betterhorses.horse.HorseHelper;
 import com.betterhorses.screen.widget.PageWidget;
 import net.minecraft.client.gui.DrawContext;
@@ -28,7 +29,7 @@ public class BreedingChartScreen extends Screen {
 
     public BreedingChartScreen(Text title, AbstractHorseEntity horse) {
         super(title);
-        this.horse = horse;
+        this.horse = horse.getClass().cast(horse);
         this.currentPage = Page.STATISTIC;
     }
 
@@ -138,10 +139,7 @@ public class BreedingChartScreen extends Screen {
             }
 
             case ANCESTRY -> {
-                NbtCompound horseNbt = horse.writeNbt(new NbtCompound());
-                AbstractHorseEntity horse1, horse2;
-
-                System.out.println(horseNbt.get("Parents"));
+                TrackedParents tp = (TrackedParents) horse;
             }
         }
     }
