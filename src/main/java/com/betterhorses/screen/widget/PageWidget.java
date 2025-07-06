@@ -19,6 +19,7 @@ public class PageWidget extends ClickableWidget {
 
     @Override
     protected void renderWidget(DrawContext context, int mouseX, int mouseY, float delta) {
+        //Rendering in a texture in the clipboard.png sprite sheet
     }
 
     @Override

@@ -24,5 +24,6 @@
   "text.betterhorses.health": "Health: %s h",
   "text.betterhorses.speed": "Speed: %s b/s",
   "text.betterhorses.jump": "Jump Height: %s b",
-  "text.betterhorses.coloration": "Coloration"
+  "text.betterhorses.coloration": "Coloration",
+  "text.betterhorses.wild": "Wild"
 }

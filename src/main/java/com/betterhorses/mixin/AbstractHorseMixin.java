@@ -1,9 +1,11 @@
 package com.betterhorses.mixin;
 
+import com.betterhorses.BetterHorses;
 import com.betterhorses.duck.TrackedParents;
 import com.betterhorses.horse.Boxable;
 import com.betterhorses.networking.payload.MountPayload;
 import com.betterhorses.util.ModDataComponents;
+import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.NbtComponent;
@@ -19,19 +21,19 @@ import net.minecraft.entity.passive.HorseEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtElement;
 import net.minecraft.nbt.NbtList;
-import net.minecraft.nbt.NbtString;
+import net.minecraft.nbt.StringNbtReader;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+
+import java.util.Optional;
 
 /**
  * Mixin for the {@link AbstractHorseEntity}.
@@ -41,10 +43,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
  * @see com.betterhorses.horse.Boxable
  */
 
-@SuppressWarnings("AddedMixinMembersNamePattern")
+@SuppressWarnings({"AddedMixinMembersNamePattern", "MissingUnique"})
 @Mixin(AbstractHorseEntity.class)
 public abstract class AbstractHorseMixin extends AnimalEntity implements Boxable, TrackedParents {
 
+    @SuppressWarnings("WrongEntityDataParameterClass")
     private static final TrackedData<String> PARENTS = DataTracker.registerData(AbstractHorseEntity.class, TrackedDataHandlerRegistry.STRING);
 
     protected AbstractHorseMixin(EntityType<? extends AbstractHorseEntity> entityType, World world) {
@@ -89,6 +92,7 @@ public abstract class AbstractHorseMixin extends AnimalEntity implements Boxable
         }
     }
 
+    @SuppressWarnings("DataFlowIssue")
     @Inject(at = @At("RETURN"), method = "readCustomDataFromNbt")
     private void readParents(NbtCompound nbt, CallbackInfo ci) {
         this.dataTracker.set(PARENTS, nbt.contains("Parents") ? nbt.get("Parents").asString() : "");
@@ -102,9 +106,16 @@ public abstract class AbstractHorseMixin extends AnimalEntity implements Boxable
     }
 
     @Override
-    @Nullable
-    public NbtElement getParentsNbt() {
-        return NbtString.of(this.dataTracker.get(PARENTS));
+    public Optional<NbtCompound> getParentsNbt() {
+        try {
+            if (this.dataTracker.get(PARENTS).isEmpty()) {
+                return Optional.empty();
+            }
+            return Optional.of(StringNbtReader.parse(this.dataTracker.get(PARENTS)));
+        } catch (CommandSyntaxException e) {
+            BetterHorses.LOGGER.warn("Could not read parent nbt of entity!");
+            return Optional.empty();
+        }
     }
 
     @Override

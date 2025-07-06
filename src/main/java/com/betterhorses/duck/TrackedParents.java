@@ -2,11 +2,12 @@ package com.betterhorses.duck;
 
 import net.minecraft.entity.passive.AbstractHorseEntity;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtElement;
+
+import java.util.Optional;
 
 public interface TrackedParents {
 
-    NbtElement getParentsNbt();
+    Optional<NbtCompound> getParentsNbt();
 
     void setParentsNbt(NbtCompound parentsNbt);
 
