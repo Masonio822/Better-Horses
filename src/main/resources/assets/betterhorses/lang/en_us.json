@@ -25,5 +25,8 @@
   "text.betterhorses.speed": "Speed: %s b/s",
   "text.betterhorses.jump": "Jump Height: %s b",
   "text.betterhorses.coloration": "Coloration",
-  "text.betterhorses.wild": "Wild"
+  "text.betterhorses.wild": "Wild",
+  "text.betterhorses.male": "Male",
+  "text.betterhorses.female": "Female",
+  "text.betterhorses.child": "Child"
 }

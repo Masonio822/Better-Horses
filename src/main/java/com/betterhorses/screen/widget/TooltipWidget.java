@@ -9,7 +9,9 @@ import net.minecraft.text.Text;
 public class TooltipWidget extends ClickableWidget {
     public TooltipWidget(int x, int y, int width, int height, Tooltip tooltip) {
         super(x, y, width, height, Text.empty());
-        this.setTooltip(tooltip);
+        if (tooltip != null) {
+            this.setTooltip(tooltip);
+        }
     }
 
     /*
