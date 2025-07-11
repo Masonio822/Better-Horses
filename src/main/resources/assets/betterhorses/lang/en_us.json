@@ -1,5 +1,7 @@
 {
   "item.betterhorses.horsebox": "Horsebox",
+  "item.betterhorses.breeding_chart": "Breeding Chart",
+  "item.betterhorses.netherite_horse_armor": "Netherite Horse Armor",
   "sounds.betterhorses.horsebox_unzip": "Horsebox zips",
   "color.minecraft.horse.0": "White",
   "color.minecraft.horse.1": "Creamy",
@@ -15,7 +17,6 @@
   "marking.minecraft.horse.4": "Black Dots",
   "tooltip.betterhorses.color": "Color: ",
   "tooltip.betterhorses.marking": "Marking: ",
-  "item.betterhorses.breeding_chart": "Breeding Chart",
   "tag.item.betterhorses.horse_armor": "Horse Armors",
   "text.betterhorses.info": "Info",
   "text.betterhorses.name": "Name: %s",

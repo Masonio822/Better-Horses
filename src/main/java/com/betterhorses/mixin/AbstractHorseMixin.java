@@ -5,6 +5,8 @@ import com.betterhorses.duck.TrackedParents;
 import com.betterhorses.horse.Boxable;
 import com.betterhorses.networking.payload.MountPayload;
 import com.betterhorses.util.ModDataComponents;
+import com.betterhorses.util.ModTags;
+import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.component.DataComponentTypes;
@@ -164,5 +166,13 @@ public abstract class AbstractHorseMixin extends AnimalEntity implements Boxable
         if (this.isLogicalSideForUpdatingMovement() && this.isTouchingWater()) {
             this.travel(this.getVelocity().add(new Vec3d(0, 0.8, 0)));
         }
+    }
+
+    @ModifyExpressionValue(method = "damage", at = @At(value = "INVOKE", target = "Lnet/minecraft/util/math/random/Random;nextInt(I)I"))
+    private int preventHorseAngerOnDamage(int original) {
+        if (this.getBodyArmor().isIn(ModTags.Items.STABILIZES_HORSE)) {
+            return -1;
+        }
+        return original;
     }
 }
