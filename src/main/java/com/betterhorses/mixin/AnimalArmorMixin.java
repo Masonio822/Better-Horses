@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 /**
  * Mixin that allows horse armor to be enchanted.
- * Works in alongside the {@link AnvilMixin}
+ * Works alongside the {@link AnvilMixin}
  *
  * @see AnvilMixin
  */
