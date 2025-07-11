@@ -158,4 +158,11 @@ public abstract class AbstractHorseMixin extends AnimalEntity implements Boxable
     private void addParentTracker(DataTracker.Builder builder, CallbackInfo callbackInfo) {
         builder.add(PARENTS, "");
     }
+
+    @Inject(at = @At("TAIL"), method = "tickControlled")
+    private void allowSwimmingWhileRidden(PlayerEntity controllingPlayer, Vec3d movementInput, CallbackInfo ci) {
+        if (this.isLogicalSideForUpdatingMovement() && this.isTouchingWater()) {
+            this.travel(this.getVelocity().add(new Vec3d(0, 0.8, 0)));
+        }
+    }
 }
