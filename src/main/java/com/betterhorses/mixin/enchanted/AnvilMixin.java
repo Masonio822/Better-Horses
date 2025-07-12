@@ -1,4 +1,4 @@
-package com.betterhorses.mixin;
+package com.betterhorses.mixin.enchanted;
 
 import com.betterhorses.util.ModTags;
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;

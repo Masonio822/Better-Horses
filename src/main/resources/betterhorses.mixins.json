@@ -4,10 +4,10 @@
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "AbstractHorseMixin",
-    "AnimalArmorMixin",
-    "AnimalEntityMixin",
-    "AnvilMixin",
-    "HorseArmorFeatureRendererMixin"
+    "breeding.AnimalEntityMixin",
+    "enchanted.AnimalArmorMixin",
+    "enchanted.AnvilMixin",
+    "enchanted.HorseArmorFeatureRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -1,4 +1,4 @@
-package com.betterhorses.mixin;
+package com.betterhorses.mixin.breeding;
 
 import com.betterhorses.duck.TrackedParents;
 import net.minecraft.entity.EntityType;

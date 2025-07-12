@@ -1,8 +1,8 @@
 package com.betterhorses.mixin;
 
 import com.betterhorses.BetterHorses;
+import com.betterhorses.duck.Boxable;
 import com.betterhorses.duck.TrackedParents;
-import com.betterhorses.horse.Boxable;
 import com.betterhorses.networking.payload.MountPayload;
 import com.betterhorses.util.ModDataComponents;
 import com.betterhorses.util.ModTags;
@@ -42,7 +42,7 @@ import java.util.Optional;
  * Adds most of the custom behavior for the horses
  *
  * @see HorseEntity
- * @see com.betterhorses.horse.Boxable
+ * @see Boxable
  */
 
 @SuppressWarnings({"AddedMixinMembersNamePattern", "MissingUnique"})

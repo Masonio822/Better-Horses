@@ -1,4 +1,4 @@
-package com.betterhorses.mixin;
+package com.betterhorses.mixin.enchanted;
 
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumer;

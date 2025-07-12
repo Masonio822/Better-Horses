@@ -1,4 +1,4 @@
-package com.betterhorses.horse;
+package com.betterhorses.duck;
 
 import com.betterhorses.item.ModItems;
 import com.betterhorses.mixin.AbstractHorseMixin;

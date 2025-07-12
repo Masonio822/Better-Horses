@@ -2,9 +2,9 @@ package com.betterhorses.screen;
 
 import com.betterhorses.BetterHorses;
 import com.betterhorses.duck.TrackedParents;
-import com.betterhorses.horse.HorseHelper;
 import com.betterhorses.screen.widget.PageWidget;
 import com.betterhorses.screen.widget.TooltipWidget;
+import com.betterhorses.util.HorseHelper;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.ingame.InventoryScreen;
