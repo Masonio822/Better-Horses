@@ -6,7 +6,8 @@
     "AbstractHorseMixin",
     "AnimalArmorMixin",
     "AnimalEntityMixin",
-    "AnvilMixin"
+    "AnvilMixin",
+    "HorseArmorFeatureRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1
