@@ -1,5 +1,6 @@
 package com.betterhorses.mixin;
 
+import com.betterhorses.BetterHorses;
 import com.betterhorses.duck.Boxable;
 import com.betterhorses.duck.TrackedParents;
 import com.betterhorses.networking.payload.MountPayload;
@@ -11,12 +12,15 @@ import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.NbtComponent;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.attribute.EntityAttributeModifier;
+import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.passive.AbstractHorseEntity;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
@@ -37,6 +41,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @SuppressWarnings({"AddedMixinMembersNamePattern"})
 @Mixin(AbstractHorseEntity.class)
 public abstract class AbstractHorseMixin extends AnimalEntity implements Boxable, TrackedParents {
+
+    @Unique
+    private static final Identifier MOUNTED_REACH_MODIFIER_ID = Identifier.of(BetterHorses.MOD_ID, "mounted_reach_modifier");
 
     protected AbstractHorseMixin(EntityType<? extends AbstractHorseEntity> entityType, World world) {
         super(entityType, world);
@@ -97,5 +104,27 @@ public abstract class AbstractHorseMixin extends AnimalEntity implements Boxable
             return -1;
         }
         return original;
+    }
+
+    @Inject(method = "putPlayerOnBack", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerEntity;startRiding(Lnet/minecraft/entity/Entity;)Z"))
+    private void changeReachOnMount(PlayerEntity player, CallbackInfo ci) {
+        player.getAttributeInstance(EntityAttributes.PLAYER_ENTITY_INTERACTION_RANGE).addTemporaryModifier(new EntityAttributeModifier(
+                MOUNTED_REACH_MODIFIER_ID,
+                -1.0d,
+                EntityAttributeModifier.Operation.ADD_VALUE
+        ));
+        player.getAttributeInstance(EntityAttributes.PLAYER_BLOCK_INTERACTION_RANGE).addTemporaryModifier(new EntityAttributeModifier(
+                MOUNTED_REACH_MODIFIER_ID,
+                -1.0d,
+                EntityAttributeModifier.Operation.ADD_VALUE
+        ));
+    }
+
+    @Inject(method = "updatePassengerForDismount", at = @At("RETURN"))
+    private void changeReachOnDismount(LivingEntity passenger, CallbackInfoReturnable<Vec3d> cir) {
+        if (passenger instanceof PlayerEntity player) {
+            player.getAttributeInstance(EntityAttributes.PLAYER_ENTITY_INTERACTION_RANGE).removeModifier(MOUNTED_REACH_MODIFIER_ID);
+            player.getAttributeInstance(EntityAttributes.PLAYER_BLOCK_INTERACTION_RANGE).removeModifier(MOUNTED_REACH_MODIFIER_ID);
+        }
     }
 }
