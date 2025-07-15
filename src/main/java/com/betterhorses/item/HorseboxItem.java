@@ -1,7 +1,7 @@
 package com.betterhorses.item;
 
-import com.betterhorses.horse.Boxable;
-import com.betterhorses.horse.HorseHelper;
+import com.betterhorses.duck.Boxable;
+import com.betterhorses.util.HorseHelper;
 import com.betterhorses.util.ModDataComponents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.minecraft.component.type.NbtComponent;

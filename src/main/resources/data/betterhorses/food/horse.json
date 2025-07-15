@@ -1,0 +1,47 @@
+{
+  "enabled": true,
+  "values": {
+    "minecraft:wheat": {
+      "heal": 1.0,
+      "age": 30,
+      "temper": 3
+    },
+    "minecraft:sugar": {
+      "heal": 1.0,
+      "age": 30,
+      "temper": 3
+    },
+    "minecraft:hay_block": {
+      "heal": 20.0,
+      "age": 180
+    },
+    "minecraft:apple": {
+      "heal": 3.0,
+      "age": 60,
+      "temper": 3,
+      "breed": true,
+      "mutationChance": 0.0
+    },
+    "minecraft:golden_carrot": {
+      "heal": 4.0,
+      "age": 60,
+      "temper": 5,
+      "breed": true,
+      "mutationChance": 15.0
+    },
+    "minecraft:golden_apple": {
+      "heal": 10.0,
+      "age": 240,
+      "temper": 10,
+      "breed": true,
+      "mutationChance": 50.0
+    },
+    "minecraft:enchanted_golden_apple": {
+      "heal": 10.0,
+      "age": 240,
+      "temper": 10,
+      "breed": true,
+      "mutationChance": 100.0
+    }
+  }
+}

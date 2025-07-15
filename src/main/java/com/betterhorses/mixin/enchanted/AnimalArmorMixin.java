@@ -1,4 +1,4 @@
-package com.betterhorses.mixin;
+package com.betterhorses.mixin.enchanted;
 
 import net.minecraft.item.AnimalArmorItem;
 import net.minecraft.item.ArmorItem;

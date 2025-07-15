@@ -1,4 +1,4 @@
-package com.betterhorses.horse;
+package com.betterhorses.util;
 
 import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributes;

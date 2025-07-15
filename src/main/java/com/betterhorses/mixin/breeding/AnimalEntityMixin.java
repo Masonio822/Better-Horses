@@ -1,10 +1,11 @@
-package com.betterhorses.mixin;
+package com.betterhorses.mixin.breeding;
 
 import com.betterhorses.duck.TrackedParents;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.passive.AbstractHorseEntity;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.PassiveEntity;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
@@ -24,6 +25,17 @@ public abstract class AnimalEntityMixin extends PassiveEntity {
         if (baby instanceof AbstractHorseEntity && other instanceof AbstractHorseEntity o && (AnimalEntity) (Object) this instanceof AbstractHorseEntity t) {
             TrackedParents tp = (TrackedParents) baby;
             tp.setParents(t, o);
+
+            NbtCompound otherNbt = other.writeNbt(new NbtCompound());
+            NbtCompound thisNbt = this.writeNbt(new NbtCompound());
+            if (otherNbt.contains("MutationChance")) {
+                otherNbt.remove("MutationChance");
+                other.readNbt(otherNbt);
+            }
+            if (thisNbt.contains("MutationChance")) {
+                thisNbt.remove("MutationChance");
+                this.readNbt(thisNbt);
+            }
         }
     }
 }
