@@ -1,6 +1,8 @@
 package com.betterhorses;
 
 import com.betterhorses.item.ModItems;
+import com.betterhorses.json.HorseFood;
+import com.betterhorses.json.JsonLoader;
 import com.betterhorses.networking.payload.BreedingChartPayload;
 import com.betterhorses.networking.payload.MountPayload;
 import com.betterhorses.sound.ModSounds;
@@ -12,9 +14,13 @@ import net.minecraft.util.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Set;
+
 public class BetterHorses implements ModInitializer {
     public static final String MOD_ID = "betterhorses";
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
+
+    private static Set<HorseFood> horseFoods;
 
     @Override
     public void onInitialize() {
@@ -25,6 +31,15 @@ public class BetterHorses implements ModInitializer {
         ModItems.registerItems();
         ModDataComponents.registerDataComponentTypes();
         ModSounds.registerSounds();
+        JsonLoader.load();
+    }
+
+    public static void setHorseFoods(Set<HorseFood> horseFoods) {
+        BetterHorses.horseFoods = horseFoods;
+    }
+
+    public static Set<HorseFood> getHorseFoods() {
+        return horseFoods;
     }
 
     public static Identifier identifier(String path) {

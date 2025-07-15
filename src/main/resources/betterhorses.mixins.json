@@ -5,6 +5,9 @@
   "mixins": [
     "AbstractHorseMixin",
     "breeding.AnimalEntityMixin",
+    "breeding.BreedingMixin",
+    "breeding.MutationMixin",
+    "breeding.SaveParentsMixin",
     "enchanted.AnimalArmorMixin",
     "enchanted.AnvilMixin",
     "enchanted.HorseArmorFeatureRendererMixin"
