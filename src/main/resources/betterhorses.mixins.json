@@ -4,6 +4,7 @@
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "AbstractHorseMixin",
+    "MountedReachMixin",
     "breeding.AnimalEntityMixin",
     "breeding.BreedingMixin",
     "breeding.MutationMixin",

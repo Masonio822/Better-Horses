@@ -1,5 +1,6 @@
 package com.betterhorses;
 
+import com.betterhorses.attributes.ModEntityAttributes;
 import com.betterhorses.item.ModItems;
 import com.betterhorses.json.HorseFood;
 import com.betterhorses.json.JsonLoader;
@@ -32,6 +33,7 @@ public class BetterHorses implements ModInitializer {
         ModDataComponents.registerDataComponentTypes();
         ModSounds.registerSounds();
         JsonLoader.load();
+        ModEntityAttributes.registerModEntityAttributes();
     }
 
     public static void setHorseFoods(Set<HorseFood> horseFoods) {

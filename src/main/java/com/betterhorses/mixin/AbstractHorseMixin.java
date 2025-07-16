@@ -12,8 +12,6 @@ import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.NbtComponent;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.attribute.EntityAttributeModifier;
-import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.passive.AbstractHorseEntity;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -104,27 +102,5 @@ public abstract class AbstractHorseMixin extends AnimalEntity implements Boxable
             return -1;
         }
         return original;
-    }
-
-    @Inject(method = "putPlayerOnBack", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerEntity;startRiding(Lnet/minecraft/entity/Entity;)Z"))
-    private void changeReachOnMount(PlayerEntity player, CallbackInfo ci) {
-        player.getAttributeInstance(EntityAttributes.PLAYER_ENTITY_INTERACTION_RANGE).addTemporaryModifier(new EntityAttributeModifier(
-                MOUNTED_REACH_MODIFIER_ID,
-                -1.0d,
-                EntityAttributeModifier.Operation.ADD_VALUE
-        ));
-        player.getAttributeInstance(EntityAttributes.PLAYER_BLOCK_INTERACTION_RANGE).addTemporaryModifier(new EntityAttributeModifier(
-                MOUNTED_REACH_MODIFIER_ID,
-                -1.0d,
-                EntityAttributeModifier.Operation.ADD_VALUE
-        ));
-    }
-
-    @Inject(method = "updatePassengerForDismount", at = @At("RETURN"))
-    private void changeReachOnDismount(LivingEntity passenger, CallbackInfoReturnable<Vec3d> cir) {
-        if (passenger instanceof PlayerEntity player) {
-            player.getAttributeInstance(EntityAttributes.PLAYER_ENTITY_INTERACTION_RANGE).removeModifier(MOUNTED_REACH_MODIFIER_ID);
-            player.getAttributeInstance(EntityAttributes.PLAYER_BLOCK_INTERACTION_RANGE).removeModifier(MOUNTED_REACH_MODIFIER_ID);
-        }
     }
 }

@@ -19,7 +19,7 @@
       "com.betterhorses.BetterHorses"
     ],
     "fabric-datagen": [
-      "com.betterhorses.BetterHorsesDataGenerator"
+      "com.betterhorses.datagen.BetterHorsesDataGenerator"
     ],
     "client": [
       "com.betterhorses.BetterHorsesClient"
