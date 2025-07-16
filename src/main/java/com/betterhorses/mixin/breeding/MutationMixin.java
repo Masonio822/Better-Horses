@@ -33,7 +33,7 @@ public abstract class MutationMixin extends AnimalEntity {
     @WrapOperation(method = "setChildAttribute", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/passive/AbstractHorseEntity;calculateAttributeBaseValue(DDDDLnet/minecraft/util/math/random/Random;)D"))
     private double mutate(double parentBase, double otherParentBase, double min, double max, Random random, Operation<Double> original, PassiveEntity other, AbstractHorseEntity child, RegistryEntry<EntityAttribute> attribute) {
         if (other instanceof AbstractHorseEntity) {
-            if (this.attribute.equals(attribute)) {
+            if (this.attribute != null && this.attribute.equals(attribute)) {
                 return original.call(parentBase + (parentBase * 0.1), otherParentBase + (otherParentBase * 0.1), min, max, random);
             }
         }
@@ -50,6 +50,8 @@ public abstract class MutationMixin extends AnimalEntity {
                         List.of(EntityAttributes.GENERIC_MAX_HEALTH, EntityAttributes.GENERIC_JUMP_STRENGTH, EntityAttributes.GENERIC_MOVEMENT_SPEED),
                         this.random
                 );
+            } else {
+                attribute = null;
             }
         }
     }

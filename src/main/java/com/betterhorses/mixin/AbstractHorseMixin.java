@@ -7,11 +7,14 @@ import com.betterhorses.networking.payload.MountPayload;
 import com.betterhorses.util.ModDataComponents;
 import com.betterhorses.util.ModTags;
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
+import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.NbtComponent;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.attribute.DefaultAttributeContainer;
+import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.passive.AbstractHorseEntity;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -102,5 +105,16 @@ public abstract class AbstractHorseMixin extends AnimalEntity implements Boxable
             return -1;
         }
         return original;
+    }
+
+    @ModifyReturnValue(method = "createBaseHorseAttributes", at = @At("RETURN"))
+    private static DefaultAttributeContainer.Builder buffMovementSpeed(DefaultAttributeContainer.Builder original) {
+        return original
+                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.28F);
+    }
+
+    @ModifyReturnValue(method = "getChildMovementSpeedBonus", at = @At(value = "RETURN"))
+    private static double buffChildMovementSpeed(double original) {
+        return original + 0.06D;
     }
 }
