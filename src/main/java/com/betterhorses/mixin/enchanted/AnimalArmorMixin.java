@@ -1,5 +1,6 @@
 package com.betterhorses.mixin.enchanted;
 
+import com.betterhorses.config.CommonConfig;
 import net.minecraft.item.AnimalArmorItem;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ArmorMaterial;
@@ -31,6 +32,8 @@ public abstract class AnimalArmorMixin extends ArmorItem {
 
     @Inject(at = @At("HEAD"), method = "isEnchantable", cancellable = true)
     private void makeEnchantable(ItemStack stack, CallbackInfoReturnable<Boolean> cir) {
-        cir.setReturnValue(this.type == AnimalArmorItem.Type.EQUESTRIAN);
+        if (CommonConfig.INSTANCE.horseArmorEnchantable) {
+            cir.setReturnValue(this.type == AnimalArmorItem.Type.EQUESTRIAN);
+        }
     }
 }

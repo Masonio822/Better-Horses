@@ -1,6 +1,8 @@
 package com.betterhorses;
 
 import com.betterhorses.attributes.ModEntityAttributes;
+import com.betterhorses.config.ClientConfig;
+import com.betterhorses.config.CommonConfig;
 import com.betterhorses.item.ModItems;
 import com.betterhorses.json.HorseFood;
 import com.betterhorses.json.JsonLoader;
@@ -8,7 +10,7 @@ import com.betterhorses.networking.payload.BreedingChartPayload;
 import com.betterhorses.networking.payload.MountPayload;
 import com.betterhorses.sound.ModSounds;
 import com.betterhorses.util.ModDataComponents;
-import com.betterhorses.util.loottable.LootTableModifer;
+import com.betterhorses.util.loottable.LootTableModifier;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.minecraft.util.Identifier;
@@ -28,12 +30,16 @@ public class BetterHorses implements ModInitializer {
         PayloadTypeRegistry.playS2C().register(BreedingChartPayload.ID, BreedingChartPayload.CODEC);
         PayloadTypeRegistry.playS2C().register(MountPayload.ID, MountPayload.CODEC);
 
-        LootTableModifer.modifyLootTables();
+        LootTableModifier.modifyLootTables();
         ModItems.registerItems();
         ModDataComponents.registerDataComponentTypes();
         ModSounds.registerSounds();
         JsonLoader.load();
         ModEntityAttributes.registerModEntityAttributes();
+
+        //Load both configs
+        CommonConfig.INSTANCE.load();
+        ClientConfig.INSTANCE.load();
     }
 
     public static void setHorseFoods(Set<HorseFood> horseFoods) {

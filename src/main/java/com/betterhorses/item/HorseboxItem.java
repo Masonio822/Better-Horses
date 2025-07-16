@@ -1,5 +1,6 @@
 package com.betterhorses.item;
 
+import com.betterhorses.config.CommonConfig;
 import com.betterhorses.duck.Boxable;
 import com.betterhorses.util.HorseHelper;
 import com.betterhorses.util.ModDataComponents;
@@ -56,7 +57,7 @@ public class HorseboxItem extends Item {
             return ActionResult.PASS;
         }
         if (entity instanceof HorseEntity horse && !user.getItemCooldownManager().isCoolingDown(this)) {
-            user.getItemCooldownManager().set(this, 40);
+            user.getItemCooldownManager().set(this, CommonConfig.INSTANCE.horseboxCooldown);
             return Boxable.tryBox(user, hand, (LivingEntity & Boxable) horse);
         }
         return ActionResult.PASS;
@@ -103,7 +104,7 @@ public class HorseboxItem extends Item {
             }
             ItemStack exchange = ItemUsage.exchangeStack(user.getStackInHand(hand), user, new ItemStack(ModItems.HORSEBOX), true);
             user.setStackInHand(hand, exchange);
-            user.getItemCooldownManager().set(this, 40);
+            user.getItemCooldownManager().set(this, CommonConfig.INSTANCE.horseboxCooldown);
 
             world.emitGameEvent(user, GameEvent.ENTITY_PLACE, user.getBlockPos());
         }

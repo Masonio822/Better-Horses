@@ -18,7 +18,7 @@ import java.util.Random;
  *
  * @see net.minecraft.item.AnimalArmorItem
  * @see net.minecraft.loot.LootTable
- * @see LootTableModifer
+ * @see LootTableModifier
  */
 public class RemoveHorseArmorFunction implements LootFunction {
     public static final RemoveHorseArmorFunction INSTANCE = new RemoveHorseArmorFunction();

@@ -1,5 +1,6 @@
 package com.betterhorses.mixin.enchanted;
 
+import com.betterhorses.config.CommonConfig;
 import com.betterhorses.util.ModTags;
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import net.minecraft.entity.player.PlayerInventory;
@@ -29,6 +30,9 @@ public abstract class AnvilMixin extends ForgingScreenHandler {
      */
     @ModifyExpressionValue(method = "updateResult", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;isDamageable()Z"))
     private boolean allowNonDamageableCombine(boolean original) {
-        return original || this.input.getStack(0).isIn(ModTags.Items.HORSE_ARMOR) && this.input.getStack(1).isIn(ModTags.Items.HORSE_ARMOR);
+        if (CommonConfig.INSTANCE.horseArmorEnchantable) {
+            return original || this.input.getStack(0).isIn(ModTags.Items.HORSE_ARMOR) && this.input.getStack(1).isIn(ModTags.Items.HORSE_ARMOR);
+        }
+        return original;
     }
 }

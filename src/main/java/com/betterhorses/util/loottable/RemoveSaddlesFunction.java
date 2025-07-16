@@ -16,7 +16,7 @@ import net.minecraft.registry.Registry;
  *
  * @see net.minecraft.item.SaddleItem
  * @see net.minecraft.loot.LootTable
- * @see LootTableModifer
+ * @see LootTableModifier
  */
 public class RemoveSaddlesFunction implements LootFunction {
     public static final RemoveSaddlesFunction INSTANCE = new RemoveSaddlesFunction();
