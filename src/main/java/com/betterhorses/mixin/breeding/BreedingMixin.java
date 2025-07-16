@@ -1,6 +1,7 @@
 package com.betterhorses.mixin.breeding;
 
 import com.betterhorses.BetterHorses;
+import com.betterhorses.config.CommonConfig;
 import com.betterhorses.duck.Mutable;
 import com.betterhorses.json.HorseFood;
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
@@ -62,6 +63,9 @@ public abstract class BreedingMixin extends AnimalEntity implements Mutable {
         HorseFood horseFood = searchIdentifier(Identifier.of(item.getItem().toString()));
         if (!_this.getWorld().isClient && _this.isTame() && _this.getBreedingAge() == 0 && !_this.isInLove()
                 && horseFood.breed()) {
+            if (horseFood.id().equals(Identifier.of("minecraft:apple")) && !CommonConfig.INSTANCE.allowAppleBreeding) {
+                return value;
+            }
             _this.lovePlayer(player);
             setMutationChance(horseFood.mutationChance());
             return true;

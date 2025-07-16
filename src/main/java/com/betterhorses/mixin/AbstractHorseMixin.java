@@ -1,6 +1,7 @@
 package com.betterhorses.mixin;
 
 import com.betterhorses.BetterHorses;
+import com.betterhorses.config.CommonConfig;
 import com.betterhorses.duck.Boxable;
 import com.betterhorses.duck.TrackedParents;
 import com.betterhorses.networking.payload.MountPayload;
@@ -101,7 +102,7 @@ public abstract class AbstractHorseMixin extends AnimalEntity implements Boxable
      */
     @ModifyExpressionValue(method = "damage", at = @At(value = "INVOKE", target = "Lnet/minecraft/util/math/random/Random;nextInt(I)I"))
     private int preventHorseAngerOnDamage(int original) {
-        if (this.getBodyArmor().isIn(ModTags.Items.STABILIZES_HORSE)) {
+        if (this.getBodyArmor().isIn(ModTags.Items.STABILIZES_HORSE) && CommonConfig.INSTANCE.immuneToNeighing) {
             return -1;
         }
         return original;

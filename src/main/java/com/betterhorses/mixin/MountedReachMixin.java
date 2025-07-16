@@ -1,6 +1,7 @@
 package com.betterhorses.mixin;
 
 import com.betterhorses.attributes.ModEntityAttributes;
+import com.betterhorses.config.CommonConfig;
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -22,22 +23,27 @@ public abstract class MountedReachMixin extends LivingEntity {
 
     @Inject(method = "getBlockInteractionRange", at = @At("HEAD"), cancellable = true)
     private void useMountedBlockRange(CallbackInfoReturnable<Double> cir) {
-        if (this.getVehicle() instanceof AbstractHorseEntity && this.getStackInHand(this.getActiveHand()).isIn(ItemTags.SHARP_WEAPON_ENCHANTABLE)) {
+        if (this.getVehicle() instanceof AbstractHorseEntity && this.getStackInHand(this.getActiveHand()).isIn(ItemTags.SHARP_WEAPON_ENCHANTABLE)
+                && CommonConfig.INSTANCE.horseReachPenalty != -1) {
             cir.setReturnValue(this.getAttributeValue(ModEntityAttributes.PLAYER_MOUNTED_BLOCK_REACH));
         }
     }
 
     @Inject(method = "getEntityInteractionRange", at = @At("HEAD"), cancellable = true)
     private void useMountedEntityRange(CallbackInfoReturnable<Double> cir) {
-        if (this.getVehicle() instanceof AbstractHorseEntity && this.getStackInHand(this.getActiveHand()).isIn(ItemTags.SHARP_WEAPON_ENCHANTABLE)) {
+        if (this.getVehicle() instanceof AbstractHorseEntity && this.getStackInHand(this.getActiveHand()).isIn(ItemTags.SHARP_WEAPON_ENCHANTABLE)
+                && CommonConfig.INSTANCE.horseReachPenalty != -1) {
             cir.setReturnValue(this.getAttributeValue(ModEntityAttributes.PLAYER_MOUNTED_ENTITY_REACH));
         }
     }
 
     @ModifyReturnValue(method = "createPlayerAttributes", at = @At("RETURN"))
     private static DefaultAttributeContainer.Builder initMountedRange(DefaultAttributeContainer.Builder original) {
-        return original
-                .add(ModEntityAttributes.PLAYER_MOUNTED_ENTITY_REACH, 2)
-                .add(ModEntityAttributes.PLAYER_MOUNTED_BLOCK_REACH, 3.5);
+        if (CommonConfig.INSTANCE.horseReachPenalty != -1) {
+            return original
+                    .add(ModEntityAttributes.PLAYER_MOUNTED_ENTITY_REACH, 3 - CommonConfig.INSTANCE.horseReachPenalty)
+                    .add(ModEntityAttributes.PLAYER_MOUNTED_BLOCK_REACH, 4.5 - CommonConfig.INSTANCE.horseReachPenalty);
+        }
+        return original;
     }
 }
