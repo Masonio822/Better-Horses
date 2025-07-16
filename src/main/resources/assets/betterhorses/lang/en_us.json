@@ -30,5 +30,8 @@
   "text.betterhorses.wild": "Wild",
   "text.betterhorses.male": "Male",
   "text.betterhorses.female": "Female",
-  "text.betterhorses.child": "Child"
+  "text.betterhorses.child": "Child",
+  "enchantment.betterhorses.jousting": "Jousting",
+  "attribute.name.player.mounted_entity_reach": "Mounted Entity Reach",
+  "attribute.name.player.mounted_block_reach": "Mounted Block Reach"
 }

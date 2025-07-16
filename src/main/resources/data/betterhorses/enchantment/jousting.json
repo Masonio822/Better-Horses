@@ -1,0 +1,44 @@
+{
+  "anvil_cost": 6,
+  "description": {
+    "translate": "enchantment.betterhorses.jousting"
+  },
+  "effects": {
+    "minecraft:attributes": [
+      {
+        "amount": {
+          "type": "minecraft:linear",
+          "base": 1.0,
+          "per_level_above_first": 1.0
+        },
+        "attribute": "betterhorses:player.mounted_entity_reach",
+        "id": "betterhorses:enchantment.jousting",
+        "operation": "add_value"
+      },
+      {
+        "amount": {
+          "type": "minecraft:linear",
+          "base": 1.0,
+          "per_level_above_first": 1.0
+        },
+        "attribute": "betterhorses:player.mounted_block_reach",
+        "id": "betterhorses:enchantment.jousting",
+        "operation": "add_value"
+      }
+    ]
+  },
+  "max_cost": {
+    "base": 50,
+    "per_level_above_first": 0
+  },
+  "max_level": 1,
+  "min_cost": {
+    "base": 25,
+    "per_level_above_first": 0
+  },
+  "slots": [
+    "mainhand"
+  ],
+  "supported_items": "#minecraft:enchantable/sharp_weapon",
+  "weight": 2
+}

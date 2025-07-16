@@ -1,5 +1,6 @@
 package com.betterhorses.mixin;
 
+import com.betterhorses.BetterHorses;
 import com.betterhorses.duck.Boxable;
 import com.betterhorses.duck.TrackedParents;
 import com.betterhorses.networking.payload.MountPayload;
@@ -17,6 +18,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
@@ -37,6 +39,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @SuppressWarnings({"AddedMixinMembersNamePattern"})
 @Mixin(AbstractHorseEntity.class)
 public abstract class AbstractHorseMixin extends AnimalEntity implements Boxable, TrackedParents {
+
+    @Unique
+    private static final Identifier MOUNTED_REACH_MODIFIER_ID = Identifier.of(BetterHorses.MOD_ID, "mounted_reach_modifier");
 
     protected AbstractHorseMixin(EntityType<? extends AbstractHorseEntity> entityType, World world) {
         super(entityType, world);
