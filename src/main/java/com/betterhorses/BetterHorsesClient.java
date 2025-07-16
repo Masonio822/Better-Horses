@@ -1,5 +1,6 @@
 package com.betterhorses;
 
+import com.betterhorses.config.ClientConfig;
 import com.betterhorses.networking.payload.BreedingChartPayload;
 import com.betterhorses.networking.payload.MountPayload;
 import com.betterhorses.screen.BreedingChartScreen;
@@ -23,7 +24,7 @@ public class BetterHorsesClient implements ClientModInitializer {
         }));
         //Mount Packet Register
         ClientPlayNetworking.registerGlobalReceiver(MountPayload.ID, (payload, context) -> context.client().execute(() -> {
-            MinecraftClient.getInstance().options.setPerspective(payload.mounted() ? Perspective.THIRD_PERSON_BACK : Perspective.FIRST_PERSON);
+            MinecraftClient.getInstance().options.setPerspective(payload.mounted() ? ClientConfig.INSTANCE.mountPerspective.value() : Perspective.FIRST_PERSON);
         }));
 
         ModModelPredicates.registerModelPredicates();

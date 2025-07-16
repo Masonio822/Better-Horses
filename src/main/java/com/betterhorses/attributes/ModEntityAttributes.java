@@ -1,6 +1,7 @@
 package com.betterhorses.attributes;
 
 import com.betterhorses.BetterHorses;
+import com.betterhorses.config.CommonConfig;
 import net.minecraft.entity.attribute.ClampedEntityAttribute;
 import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.registry.Registries;
@@ -13,14 +14,14 @@ public class ModEntityAttributes {
     public static final RegistryEntry<EntityAttribute> PLAYER_MOUNTED_ENTITY_REACH =
             register("player.mounted_entity_reach", new ClampedEntityAttribute(
                     "attribute.name.player.mounted_entity_reach",
-                    2,
+                    3 - CommonConfig.INSTANCE.horseReachPenalty,
                     -64,
                     64
             ).setTracked(true));
     public static final RegistryEntry<EntityAttribute> PLAYER_MOUNTED_BLOCK_REACH =
             register("player.mounted_block_reach", new ClampedEntityAttribute(
                     "attribute.name.player.mounted_block_reach",
-                    3.5,
+                    4.5 - CommonConfig.INSTANCE.horseReachPenalty,
                     -64,
                     64
             ).setTracked(true));
