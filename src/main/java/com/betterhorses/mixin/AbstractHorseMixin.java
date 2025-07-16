@@ -113,8 +113,8 @@ public abstract class AbstractHorseMixin extends AnimalEntity implements Boxable
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.28F);
     }
 
-    @ModifyExpressionValue(method = "getChildMovementSpeedBonus", at = @At(value = "CONSTANT", args = "doubleValue=0.25"))
+    @ModifyReturnValue(method = "getChildMovementSpeedBonus", at = @At(value = "RETURN"))
     private static double buffChildMovementSpeed(double original) {
-        return original + 0.05D;
+        return original + 0.06D;
     }
 }

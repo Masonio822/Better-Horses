@@ -14,7 +14,7 @@ public class HorseHelper {
     }
 
     public static double convertToJumpBlocks(double internal) {
-        return Math.round(((3.33 * internal * internal) + (2.33 * internal) - 0.3767) * 2.0) / 2.0;
+        return roundToTwoDecimals((3.33 * internal * internal) + (2.33 * internal) - 0.3767);
     }
 
     public static double roundToTwoDecimals(float f) {
@@ -29,7 +29,7 @@ public class HorseHelper {
         if (attribute.equals(EntityAttributes.GENERIC_MAX_HEALTH)) {
             return value > 25.0 ? Formatting.DARK_GREEN : value < 20.0 ? Formatting.DARK_RED : Formatting.DARK_GRAY;
         } else if (attribute.equals(EntityAttributes.GENERIC_MOVEMENT_SPEED)) {
-            return value > 0.277 ? Formatting.DARK_GREEN : value < 0.162 ? Formatting.DARK_RED : Formatting.DARK_GRAY;
+            return value > 0.308 ? Formatting.DARK_GREEN : value < 0.237 ? Formatting.DARK_RED : Formatting.DARK_GRAY;
         } else if (attribute.equals(EntityAttributes.GENERIC_JUMP_STRENGTH)) {
             return value > 0.85 ? Formatting.DARK_GREEN : value < 0.5 ? Formatting.DARK_RED : Formatting.DARK_GRAY;
         } else {
