@@ -91,7 +91,7 @@ public abstract class AbstractHorseMixin extends AnimalEntity implements Boxable
 
     @Inject(at = @At("TAIL"), method = "tickControlled")
     private void allowSwimmingWhileRidden(PlayerEntity controllingPlayer, Vec3d movementInput, CallbackInfo ci) {
-        if (this.isLogicalSideForUpdatingMovement() && this.isTouchingWater()) {
+        if (this.isLogicalSideForUpdatingMovement() && this.isTouchingWater() && CommonConfig.INSTANCE.horsesCanSwim) {
             this.travel(this.getVelocity().add(new Vec3d(0, 0.8, 0)));
         }
     }
@@ -110,12 +110,18 @@ public abstract class AbstractHorseMixin extends AnimalEntity implements Boxable
 
     @ModifyReturnValue(method = "createBaseHorseAttributes", at = @At("RETURN"))
     private static DefaultAttributeContainer.Builder buffMovementSpeed(DefaultAttributeContainer.Builder original) {
-        return original
-                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.28F);
+        if (CommonConfig.INSTANCE.buffHorses) {
+            return original
+                    .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.28F);
+        }
+        return original;
     }
 
     @ModifyReturnValue(method = "getChildMovementSpeedBonus", at = @At(value = "RETURN"))
     private static double buffChildMovementSpeed(double original) {
-        return original + 0.06D;
+        if (CommonConfig.INSTANCE.buffHorses) {
+            return original + 0.06D;
+        }
+        return original;
     }
 }

@@ -2,7 +2,6 @@ package com.betterhorses.enchantment;
 
 import com.betterhorses.BetterHorses;
 import com.betterhorses.attributes.ModEntityAttributes;
-import com.betterhorses.config.CommonConfig;
 import net.minecraft.component.EnchantmentEffectComponentTypes;
 import net.minecraft.component.type.AttributeModifierSlot;
 import net.minecraft.enchantment.Enchantment;
@@ -25,30 +24,27 @@ public class ModEnchantments {
         var enchantments = registerable.getRegistryLookup(RegistryKeys.ENCHANTMENT);
         var items = registerable.getRegistryLookup(RegistryKeys.ITEM);
 
-        if (CommonConfig.INSTANCE.joust) {
-            register(registerable, JOUSTING, Enchantment.builder(Enchantment.definition(
-                            items.getOrThrow(ItemTags.SHARP_WEAPON_ENCHANTABLE),
-                            2,
-                            1,
-                            Enchantment.constantCost(25),
-                            Enchantment.constantCost(50),
-                            6,
-                            AttributeModifierSlot.MAINHAND))
-                    .addEffect(EnchantmentEffectComponentTypes.ATTRIBUTES, new AttributeEnchantmentEffect(
-                            Identifier.of(BetterHorses.MOD_ID, "enchantment.jousting"),
-                            ModEntityAttributes.PLAYER_MOUNTED_ENTITY_REACH,
-                            EnchantmentLevelBasedValue.linear(CommonConfig.INSTANCE.joustingReachBonus),
-                            EntityAttributeModifier.Operation.ADD_VALUE
-                    ))
-                    .addEffect(EnchantmentEffectComponentTypes.ATTRIBUTES, new AttributeEnchantmentEffect(
-                            Identifier.of(BetterHorses.MOD_ID, "enchantment.jousting"),
-                            ModEntityAttributes.PLAYER_MOUNTED_BLOCK_REACH,
-                            EnchantmentLevelBasedValue.linear(CommonConfig.INSTANCE.joustingReachBonus),
-                            EntityAttributeModifier.Operation.ADD_VALUE
-                    ))
-
-            );
-        }
+        register(registerable, JOUSTING, Enchantment.builder(Enchantment.definition(
+                        items.getOrThrow(ItemTags.SHARP_WEAPON_ENCHANTABLE),
+                        2,
+                        1,
+                        Enchantment.constantCost(25),
+                        Enchantment.constantCost(50),
+                        6,
+                        AttributeModifierSlot.MAINHAND))
+                .addEffect(EnchantmentEffectComponentTypes.ATTRIBUTES, new AttributeEnchantmentEffect(
+                        Identifier.of(BetterHorses.MOD_ID, "enchantment.jousting"),
+                        ModEntityAttributes.PLAYER_MOUNTED_ENTITY_REACH,
+                        EnchantmentLevelBasedValue.linear(1.0f),
+                        EntityAttributeModifier.Operation.ADD_VALUE
+                ))
+                .addEffect(EnchantmentEffectComponentTypes.ATTRIBUTES, new AttributeEnchantmentEffect(
+                        Identifier.of(BetterHorses.MOD_ID, "enchantment.jousting"),
+                        ModEntityAttributes.PLAYER_MOUNTED_BLOCK_REACH,
+                        EnchantmentLevelBasedValue.linear(1.0f),
+                        EntityAttributeModifier.Operation.ADD_VALUE
+                ))
+        );
     }
 
     private static void register(Registerable<Enchantment> registry, RegistryKey<Enchantment> key, Enchantment.Builder builder) {
