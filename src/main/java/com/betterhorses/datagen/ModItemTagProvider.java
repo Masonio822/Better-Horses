@@ -1,8 +1,8 @@
 package com.betterhorses.datagen;
 
 import com.betterhorses.BetterHorses;
+import com.betterhorses.data.HorseFood;
 import com.betterhorses.item.ModItems;
-import com.betterhorses.json.HorseFood;
 import com.betterhorses.util.ModTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;

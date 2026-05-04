@@ -1,6 +1,3 @@
-- Configuration System
-- Buff horse movement speed
-- Overhaul horse breeding system
 - Horse armor trims
 - Horseshoes
 - Swift-hooved Enchantment

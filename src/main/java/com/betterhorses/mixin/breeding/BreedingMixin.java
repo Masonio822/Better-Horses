@@ -2,8 +2,8 @@ package com.betterhorses.mixin.breeding;
 
 import com.betterhorses.BetterHorses;
 import com.betterhorses.config.CommonConfig;
+import com.betterhorses.data.HorseFood;
 import com.betterhorses.duck.Mutable;
-import com.betterhorses.json.HorseFood;
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.passive.AbstractHorseEntity;
