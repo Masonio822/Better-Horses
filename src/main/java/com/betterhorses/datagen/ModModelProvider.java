@@ -17,7 +17,6 @@ public class ModModelProvider extends FabricModelProvider {
 
     @Override
     public void generateItemModels(ItemModelGenerator itemModelGenerator) {
-        itemModelGenerator.register(ModItems.HORSEBOX, Models.GENERATED);
         itemModelGenerator.register(ModItems.HORSESHOE, Models.GENERATED);
         itemModelGenerator.register(ModItems.NETHERITE_HORSE_ARMOR, Models.GENERATED);
         itemModelGenerator.register(ModItems.BREEDING_CHART, Models.GENERATED);
