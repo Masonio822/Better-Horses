@@ -43,15 +43,6 @@ public class CommonConfig extends WrappedConfig {
     @SerializedName("horse_reach_penalty")
     public float horseReachPenalty = 1.0f;
 
-    @Comment("Should the jousting enchantment be registered")
-    public boolean joust = true;
-
-    @Comment("How much reach should be added to the player while riding a horse")
-    @Comment("and holding an item with the jousting enchantment")
-    @FloatRange(min = 0.0, max = 61)
-    @SerializedName("jousting_reach_bonus")
-    public float joustingReachBonus = 1.0f;
-
     @Comment("Should horse armor be removed from loot tables")
     @SerializedName("remove_horse_armor")
     public boolean removeHorseArmor = true;
@@ -59,4 +50,12 @@ public class CommonConfig extends WrappedConfig {
     @Comment("Should saddles be removed from loot tables and replaced with leather")
     @SerializedName("remove_saddles")
     public boolean removeSaddles = true;
+
+    @Comment("Should horses be able to swim while ridden")
+    @SerializedName("horses_can_swim")
+    public boolean horsesCanSwim = true;
+
+    @Comment("Should horses' base movement speed be increased slightly")
+    @SerializedName("buffHorses")
+    public boolean buffHorses = true;
 }

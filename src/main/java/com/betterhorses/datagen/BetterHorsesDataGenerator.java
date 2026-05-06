@@ -1,6 +1,6 @@
 package com.betterhorses.datagen;
 
-import com.betterhorses.enchantment.ModEnchantments;
+import com.betterhorses.datagen.enchantment.ModEnchantments;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.minecraft.registry.RegistryBuilder;
@@ -13,6 +13,9 @@ public class BetterHorsesDataGenerator implements DataGeneratorEntrypoint {
 
         pack.addProvider(ModItemTagProvider::new);
         pack.addProvider(ModRegistryDataGenerator::new);
+        pack.addProvider(ModEnglishLanguageProvider::new);
+        pack.addProvider(ModModelProvider::new);
+        pack.addProvider(ModRecipeProvider::new);
     }
 
     @Override

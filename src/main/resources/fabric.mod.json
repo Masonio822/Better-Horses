@@ -5,7 +5,7 @@
   "name": "Better Horses",
   "description": "A mod to make horses a viable means of transportation through various horse tweaks",
   "authors": [
-    "Masonio822!"
+    "Masonio822"
   ],
   "contact": {
     "homepage": "https://fabricmc.net/",
@@ -35,6 +35,5 @@
     "fabric-api": "*"
   },
   "suggests": {
-    "another-mod": "*"
   }
 }

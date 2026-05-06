@@ -11,9 +11,14 @@
     "breeding.SaveParentsMixin",
     "enchanted.AnimalArmorMixin",
     "enchanted.AnvilMixin",
-    "enchanted.HorseArmorFeatureRendererMixin"
+    "enchanted.HorseArmorFeatureRendererMixin",
+    "horseshoe.AbstractHorseInventoryMixin",
+    "horseshoe.HorseScreenHandlerMixin"
   ],
   "injectors": {
     "defaultRequire": 1
-  }
+  },
+  "client": [
+    "horseshoe.HorseScreenMixin"
+  ]
 }
