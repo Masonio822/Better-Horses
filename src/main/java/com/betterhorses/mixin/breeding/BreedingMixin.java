@@ -20,10 +20,10 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@SuppressWarnings("AddedMixinMembersNamePattern")
 @Mixin(AbstractHorseEntity.class)
 public abstract class BreedingMixin extends AnimalEntity implements Mutable {
 
+    @Unique
     private double mutationChance;
 
     protected BreedingMixin(EntityType<? extends AnimalEntity> entityType, World world) {
@@ -43,12 +43,12 @@ public abstract class BreedingMixin extends AnimalEntity implements Mutable {
     }
 
     @Override
-    public double getMutationChance() {
+    public double better_Horses_1_21_1$getMutationChance() {
         return mutationChance;
     }
 
     @Override
-    public void setMutationChance(double value) {
+    public void better_Horses_1_21_1$setMutationChance(double value) {
         mutationChance = value;
     }
 
@@ -67,7 +67,7 @@ public abstract class BreedingMixin extends AnimalEntity implements Mutable {
                 return value;
             }
             _this.lovePlayer(player);
-            setMutationChance(horseFood.mutationChance());
+            better_Horses_1_21_1$setMutationChance(horseFood.mutationChance());
             return true;
         }
         return value;

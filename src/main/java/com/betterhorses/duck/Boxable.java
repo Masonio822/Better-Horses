@@ -23,9 +23,9 @@ import net.minecraft.world.World;
  */
 
 public interface Boxable {
-    void copyDataToStack(ItemStack stack);
+    void better_Horses_1_21_1$copyDataToStack(ItemStack stack);
 
-    void copyDataFromNbt(NbtCompound nbt);
+    void better_Horses_1_21_1$copyDataFromNbt(NbtCompound nbt);
 
     static <T extends LivingEntity & Boxable> ActionResult tryBox(PlayerEntity player, Hand hand, T entity) {
         ItemStack itemStack = player.getStackInHand(hand);
@@ -33,7 +33,7 @@ public interface Boxable {
             entity.playSound(ModSounds.HORSEBOX_UNZIP, 1.0F, 1.0F);
             ItemStack boxItem = new ItemStack(ModItems.HORSEBOX);
             //Put the NBT of the entity into the item
-            entity.copyDataToStack(boxItem);
+            entity.better_Horses_1_21_1$copyDataToStack(boxItem);
 
             //Swap the empty horsebox with the new one
             ItemStack exchange = ItemUsage.exchangeStack(itemStack, player, boxItem, false);

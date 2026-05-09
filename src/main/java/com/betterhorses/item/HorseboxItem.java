@@ -91,7 +91,7 @@ public class HorseboxItem extends Item {
                 posList.add(NbtDouble.of(summonPos.getZ()));
 
                 nbtComponent = nbtComponent.apply((compound) -> compound.put("Pos", posList));
-                boxable.copyDataFromNbt(nbtComponent.copyNbt());
+                boxable.better_Horses_1_21_1$copyDataFromNbt(nbtComponent.copyNbt());
 
                 if (user.isCreative()) {
                     user.setStackInHand(hand, ItemStack.EMPTY);

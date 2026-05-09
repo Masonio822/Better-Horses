@@ -7,9 +7,9 @@ import java.util.Optional;
 
 public interface TrackedParents {
 
-    Optional<NbtCompound> getParentsNbt();
+    Optional<NbtCompound> better_Horses_1_21_1$getParentsNbt();
 
-    void setParentsNbt(NbtCompound parentsNbt);
+    void better_Horses_1_21_1$setParentsNbt(NbtCompound parentsNbt);
 
-    void setParents(AbstractHorseEntity horse1, AbstractHorseEntity horse2);
+    void better_Horses_1_21_1$setParents(AbstractHorseEntity horse1, AbstractHorseEntity horse2);
 }

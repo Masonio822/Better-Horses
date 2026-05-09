@@ -24,7 +24,7 @@ public abstract class AnimalEntityMixin extends PassiveEntity {
     private void saveParents(ServerWorld world, AnimalEntity other, PassiveEntity baby, CallbackInfo ci) {
         if (baby instanceof AbstractHorseEntity && other instanceof AbstractHorseEntity o && (AnimalEntity) (Object) this instanceof AbstractHorseEntity t) {
             TrackedParents tp = (TrackedParents) baby;
-            tp.setParents(t, o);
+            tp.better_Horses_1_21_1$setParents(t, o);
 
             NbtCompound otherNbt = other.writeNbt(new NbtCompound());
             NbtCompound thisNbt = this.writeNbt(new NbtCompound());

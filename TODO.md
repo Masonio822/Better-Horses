@@ -1,3 +1,4 @@
 - Horse armor trims
 - Horseshoes
 - Swift-hooved Enchantment
+- Sound remodel for clipboard (page flip sound effect when changing tabs and clip sound effect when using the board)

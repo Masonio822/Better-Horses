@@ -16,16 +16,17 @@ import net.minecraft.nbt.NbtList;
 import net.minecraft.nbt.StringNbtReader;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.Optional;
 
-@SuppressWarnings({"MissingUnique", "AddedMixinMembersNamePattern"})
 @Mixin(AbstractHorseEntity.class)
 public abstract class SaveParentsMixin extends AnimalEntity implements TrackedParents {
 
+    @Unique
     @SuppressWarnings("WrongEntityDataParameterClass")
     private static final TrackedData<String> PARENTS = DataTracker.registerData(AbstractHorseEntity.class, TrackedDataHandlerRegistry.STRING);
 
@@ -47,7 +48,7 @@ public abstract class SaveParentsMixin extends AnimalEntity implements TrackedPa
     }
 
     @Override
-    public Optional<NbtCompound> getParentsNbt() {
+    public Optional<NbtCompound> better_Horses_1_21_1$getParentsNbt() {
         try {
             if (this.dataTracker.get(PARENTS).isEmpty()) {
                 return Optional.empty();
@@ -60,12 +61,12 @@ public abstract class SaveParentsMixin extends AnimalEntity implements TrackedPa
     }
 
     @Override
-    public void setParentsNbt(NbtCompound parentsNbt) {
+    public void better_Horses_1_21_1$setParentsNbt(NbtCompound parentsNbt) {
         this.dataTracker.set(PARENTS, parentsNbt.asString());
     }
 
     @Override
-    public void setParents(AbstractHorseEntity horse1, AbstractHorseEntity horse2) {
+    public void better_Horses_1_21_1$setParents(AbstractHorseEntity horse1, AbstractHorseEntity horse2) {
         NbtCompound nbt = this.writeNbt(new NbtCompound());
 
         NbtCompound addThis = new NbtCompound();
@@ -92,7 +93,7 @@ public abstract class SaveParentsMixin extends AnimalEntity implements TrackedPa
         nbt.put("Parents", parents);
 
         NbtComponent.of(nbt).applyToEntity(this);
-        this.setParentsNbt(nbt);
+        this.better_Horses_1_21_1$setParentsNbt(nbt);
     }
 
     @Inject(at = @At("TAIL"), method = "initDataTracker")

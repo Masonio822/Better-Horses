@@ -3,7 +3,6 @@ package com.betterhorses.mixin;
 import com.betterhorses.BetterHorses;
 import com.betterhorses.config.CommonConfig;
 import com.betterhorses.duck.Boxable;
-import com.betterhorses.duck.TrackedParents;
 import com.betterhorses.networking.payload.MountPayload;
 import com.betterhorses.util.ModDataComponents;
 import com.betterhorses.util.ModTags;
@@ -40,9 +39,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
  * @see com.betterhorses.item.ModItems
  */
 
-@SuppressWarnings({"AddedMixinMembersNamePattern"})
 @Mixin(AbstractHorseEntity.class)
-public abstract class AbstractHorseMixin extends AnimalEntity implements Boxable, TrackedParents {
+public abstract class AbstractHorseMixin extends AnimalEntity implements Boxable {
 
     @Unique
     private static final Identifier MOUNTED_REACH_MODIFIER_ID = Identifier.of(BetterHorses.MOD_ID, "mounted_reach_modifier");
@@ -53,7 +51,7 @@ public abstract class AbstractHorseMixin extends AnimalEntity implements Boxable
 
     @Override
     @Unique
-    public void copyDataToStack(ItemStack stack) {
+    public void better_Horses_1_21_1$copyDataToStack(ItemStack stack) {
         stack.set(DataComponentTypes.CUSTOM_NAME, this.getCustomName());
         NbtComponent.set(ModDataComponents.BOX_ENTITY_DATA, stack, nbtCompound -> {
             NbtCompound nbt = this.writeNbt(nbtCompound);
@@ -65,7 +63,7 @@ public abstract class AbstractHorseMixin extends AnimalEntity implements Boxable
 
     @Override
     @Unique
-    public void copyDataFromNbt(NbtCompound nbt) {
+    public void better_Horses_1_21_1$copyDataFromNbt(NbtCompound nbt) {
         this.readNbt(nbt);
     }
 
@@ -74,7 +72,6 @@ public abstract class AbstractHorseMixin extends AnimalEntity implements Boxable
      *
      * @param player Player to change the perspective of
      */
-    //TODO Make perspective configurable
     @Inject(at = @At("HEAD"), method = "putPlayerOnBack")
     private void changePerspectiveOnMount(PlayerEntity player, CallbackInfo info) {
         if (!player.getWorld().isClient()) {

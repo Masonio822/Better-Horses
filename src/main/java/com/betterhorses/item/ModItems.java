@@ -32,15 +32,14 @@ public class ModItems {
                 }
             }
     );
-    public static final Item HORSESHOE = registerItem("horseshoe", new HorseshoeItem(
+    public static final Item HORSESHOE = registerItem("horseshoe", new Item(
                     new Item.Settings()
                             .maxCount(1)
                             .attributeModifiers(AttributeModifiersComponent.builder().add(
                                     EntityAttributes.GENERIC_JUMP_STRENGTH,
-                                    new EntityAttributeModifier(BetterHorses.identifier("horseshoe"), 0.1, EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE),
-                                    AttributeModifierSlot.BODY
+                                    new EntityAttributeModifier(BetterHorses.identifier("horseshoe"), 1.0, EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE),
+                                    AttributeModifierSlot.BETTER_HORSES_ANIMAL_FEET
                             ).build())
-                            .maxDamage(3000)
                             .equipmentSlot((entity, stack) -> EquipmentSlot.BODY)
             )
     );
@@ -53,9 +52,8 @@ public class ModItems {
             entries.addAfter(HORSESHOE, HORSEBOX);
             entries.addAfter(HORSEBOX, BREEDING_CHART);
         });
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.COMBAT).register(entries -> {
-            entries.addAfter(Items.DIAMOND_HORSE_ARMOR, NETHERITE_HORSE_ARMOR);
-        });
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.COMBAT).register(entries ->
+                entries.addAfter(Items.DIAMOND_HORSE_ARMOR, NETHERITE_HORSE_ARMOR));
     }
 
     private static Item registerItem(String name, Item item) {

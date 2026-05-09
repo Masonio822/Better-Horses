@@ -42,7 +42,7 @@ public class BreedingChartScreen extends Screen {
     private boolean facing;
     private Page currentPage;
 
-    private ArrayList<TooltipWidget> widgets;
+    private final ArrayList<TooltipWidget> widgets;
 
     @SuppressWarnings("unchecked")
     public BreedingChartScreen(Text title, AbstractHorseEntity horse) {
@@ -252,9 +252,9 @@ public class BreedingChartScreen extends Screen {
     private static AbstractHorseEntity[] getParents(AbstractHorseEntity horse) {
         EntityType<? extends AbstractHorseEntity> type = (EntityType<? extends AbstractHorseEntity>) EntityType.get(horse.getType().getTranslationKey()).orElse(horse.getType());
         TrackedParents tp = (TrackedParents) horse;
-        if (tp.getParentsNbt().isPresent()) {
+        if (tp.better_Horses_1_21_1$getParentsNbt().isPresent()) {
             List<AbstractHorseEntity> parentsList = new ArrayList<>(2);
-            ((NbtList) tp.getParentsNbt().get().get("Parents"))
+            ((NbtList) tp.better_Horses_1_21_1$getParentsNbt().get().get("Parents"))
                     .forEach(p -> {
                         AbstractHorseEntity h = type.create(horse.getWorld());
                         h.readNbt((NbtCompound) p);

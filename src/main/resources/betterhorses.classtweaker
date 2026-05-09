@@ -1,0 +1,4 @@
+classTweaker v2 named
+
+extend-enum net/minecraft/entity/EquipmentSlot BETTER_HORSES_ANIMAL_FEET
+extend-enum net/minecraft/component/type/AttributeModifierSlot BETTER_HORSES_ANIMAL_FEET

@@ -1,5 +1,6 @@
 package com.betterhorses.mixin.horseshoe;
 
+import com.betterhorses.duck.HorseshoeEquipable;
 import com.betterhorses.item.ModItems;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.passive.AbstractHorseEntity;
@@ -22,7 +23,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class HorseScreenHandlerMixin extends ScreenHandler {
     @Shadow
     @Final
-    private Inventory horseArmorInventory;
+    private AbstractHorseEntity entity;
 
     protected HorseScreenHandlerMixin(@Nullable ScreenHandlerType<?> type, int syncId) {
         super(type, syncId);
@@ -30,7 +31,7 @@ public abstract class HorseScreenHandlerMixin extends ScreenHandler {
 
     @Inject(method = "<init>", at = @At("TAIL"))
     private void addHorseShoeSlot(int syncId, PlayerInventory playerInventory, Inventory inventory, AbstractHorseEntity entity, int slotColumnCount, CallbackInfo ci) {
-        this.addSlot(new Slot(horseArmorInventory, 1, 8, 54) {
+        this.addSlot(new Slot(((HorseshoeEquipable) entity).better_Horses_1_21_1$getHorseshoeInventory(), 0, 8, 54) {
             @Override
             public boolean canInsert(ItemStack stack) {
                 return stack.isOf(ModItems.HORSESHOE);

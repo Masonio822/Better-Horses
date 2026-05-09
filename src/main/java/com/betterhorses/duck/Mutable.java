@@ -1,7 +1,7 @@
 package com.betterhorses.duck;
 
 public interface Mutable {
-    void setMutationChance(double value);
+    void better_Horses_1_21_1$setMutationChance(double value);
 
-    double getMutationChance();
+    double better_Horses_1_21_1$getMutationChance();
 }

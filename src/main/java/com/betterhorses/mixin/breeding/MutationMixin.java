@@ -43,7 +43,7 @@ public abstract class MutationMixin extends AnimalEntity {
     @Inject(method = "setChildAttributes", at = @At("HEAD"))
     private void runMutationChance(PassiveEntity other, AbstractHorseEntity child, CallbackInfo ci) {
         if (other instanceof AbstractHorseEntity) {
-            double mutationChance = (((Mutable) this).getMutationChance() + ((Mutable) other).getMutationChance()) / 2;
+            double mutationChance = (((Mutable) this).better_Horses_1_21_1$getMutationChance() + ((Mutable) other).better_Horses_1_21_1$getMutationChance()) / 2;
 
             if (mutationChance / 100 > Math.random()) {
                 attribute = Util.getRandom(

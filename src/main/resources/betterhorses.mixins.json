@@ -12,8 +12,12 @@
     "enchanted.AnimalArmorMixin",
     "enchanted.AnvilMixin",
     "enchanted.HorseArmorFeatureRendererMixin",
-    "horseshoe.AbstractHorseInventoryMixin",
-    "horseshoe.HorseScreenHandlerMixin"
+    "horseshoe.AbstractHorseHorseshoeMixin",
+    "horseshoe.AttributeModifierSlotMixin",
+    "horseshoe.EquipmentSlotMixin",
+    "horseshoe.HorseScreenHandlerMixin",
+    "horseshoe.UpdateAttributeMixin",
+    "horseshoe.UseAnimalFeetSlotMixin"
   ],
   "injectors": {
     "defaultRequire": 1

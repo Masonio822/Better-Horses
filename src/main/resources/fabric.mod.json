@@ -28,8 +28,9 @@
   "mixins": [
     "betterhorses.mixins.json"
   ],
+  "accessWidener": "betterhorses.classtweaker",
   "depends": {
-    "fabricloader": ">=0.16.10",
+    "fabricloader": ">=0.19.0",
     "minecraft": "~1.21.1",
     "java": ">=21",
     "fabric-api": "*"
