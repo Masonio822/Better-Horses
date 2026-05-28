@@ -29,6 +29,8 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
 
         getTagBuilder(ItemTags.CHEST_ARMOR_ENCHANTABLE).addTag(ModTags.Items.HORSE_ARMOR.id());
 
+        getTagBuilder(ItemTags.EQUIPPABLE_ENCHANTABLE).addTag(ModTags.Items.HORSESHOE.id());
+
         //Create new tags
         getOrCreateTagBuilder(ModTags.Items.HORSE_ARMOR)
                 .add(Items.LEATHER_HORSE_ARMOR)
@@ -38,5 +40,11 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .add(ModItems.NETHERITE_HORSE_ARMOR);
 
         getOrCreateTagBuilder(ModTags.Items.STABILIZES_HORSE).add(ModItems.NETHERITE_HORSE_ARMOR);
+
+        getOrCreateTagBuilder(ModTags.Items.HORSESHOE).add(ModItems.HORSESHOE);
+
+        getOrCreateTagBuilder(ModTags.Items.FOOT_ARMOR_AND_HORSESHOE)
+                .forceAddTag(ItemTags.FOOT_ARMOR_ENCHANTABLE)
+                .addTag(ModTags.Items.HORSESHOE);
     }
 }

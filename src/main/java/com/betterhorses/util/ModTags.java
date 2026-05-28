@@ -13,6 +13,8 @@ public class ModTags {
     public static class Items {
         public static final TagKey<Item> HORSE_ARMOR = createTag("horse_armor");
         public static final TagKey<Item> STABILIZES_HORSE = createTag("stabilizes_horse");
+        public static final TagKey<Item> HORSESHOE = createTag("horseshoe");
+        public static final TagKey<Item> FOOT_ARMOR_AND_HORSESHOE = createTag("enchantable/foot_armor_and_horseshoe");
 
         //Use Itemstack.isIn() to check tag
         private static TagKey<Item> createTag(String name) {

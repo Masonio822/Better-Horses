@@ -1,6 +1,7 @@
 package com.betterhorses.item;
 
 import com.betterhorses.networking.payload.BreedingChartPayload;
+import com.betterhorses.sound.ModSounds;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.passive.AbstractHorseEntity;
@@ -8,6 +9,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.sound.SoundCategory;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 
@@ -26,6 +28,8 @@ public class BreedingChartItem extends Item {
         }
 
         if (entity instanceof AbstractHorseEntity) {
+            user.playSoundToPlayer(ModSounds.CLIPBOARD_USE, SoundCategory.NEUTRAL, 0.85f, 1.0f);
+
             //Send the packet to change the client's screen
             ServerPlayNetworking.send((ServerPlayerEntity) user, new BreedingChartPayload(entity.getId()));
 

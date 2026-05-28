@@ -16,6 +16,7 @@
     "horseshoe.AttributeModifierSlotMixin",
     "horseshoe.EquipmentSlotMixin",
     "horseshoe.HorseScreenHandlerMixin",
+    "horseshoe.HorseshoeIsNotHorseArmorMixin",
     "horseshoe.UpdateAttributeMixin",
     "horseshoe.UseAnimalFeetSlotMixin"
   ],

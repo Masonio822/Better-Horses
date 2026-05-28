@@ -4,5 +4,11 @@
     "sounds": [
       "betterhorses:horsebox_unzip"
     ]
+  },
+  "clipboard_use": {
+    "subtitle": "sounds.betterhorses.clipboard_use",
+    "sounds": [
+      "betterhorses:clipboard_use"
+    ]
   }
 }

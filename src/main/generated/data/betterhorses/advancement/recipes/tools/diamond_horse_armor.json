@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:diamond_horse_armor"
+        "recipe": "betterhorses:diamond_horse_armor"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "minecraft:diamond_horse_armor"
+      "betterhorses:diamond_horse_armor"
     ]
   }
 }

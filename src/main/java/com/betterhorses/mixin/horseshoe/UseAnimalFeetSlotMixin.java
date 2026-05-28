@@ -1,6 +1,7 @@
 package com.betterhorses.mixin.horseshoe;
 
 import com.betterhorses.duck.HorseshoeEquipable;
+import com.betterhorses.duck.SyncedAnimalStacksEntity;
 import com.google.common.collect.Iterables;
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import net.minecraft.entity.EntityType;
@@ -45,7 +46,7 @@ abstract class UseAnimalFeetSlotMixin extends LivingEntity {
             HorseshoeEquipable horseshoeEquipable = (HorseshoeEquipable) horse;
             ItemStack itemStack = horseshoeEquipable.better_Horses_1_21_1$getHorseshoe();
             horseshoeEquipable.better_Horses_1_21_1$setHorseshoe(stack);
-            horse.onEquipStack(slot, itemStack, stack);
+            horse.onEquipStack(slot, ((SyncedAnimalStacksEntity) this).better_Horses$setSyncedAnimalStack(slot, stack), stack);
 
             ci.cancel();
         }

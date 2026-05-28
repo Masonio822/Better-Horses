@@ -2,11 +2,6 @@ package com.betterhorses.item;
 
 import com.betterhorses.BetterHorses;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
-import net.minecraft.component.type.AttributeModifierSlot;
-import net.minecraft.component.type.AttributeModifiersComponent;
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.entity.attribute.EntityAttributeModifier;
-import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.item.*;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
@@ -32,15 +27,11 @@ public class ModItems {
                 }
             }
     );
-    public static final Item HORSESHOE = registerItem("horseshoe", new Item(
-                    new Item.Settings()
-                            .maxCount(1)
-                            .attributeModifiers(AttributeModifiersComponent.builder().add(
-                                    EntityAttributes.GENERIC_JUMP_STRENGTH,
-                                    new EntityAttributeModifier(BetterHorses.identifier("horseshoe"), 1.0, EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE),
-                                    AttributeModifierSlot.BETTER_HORSES_ANIMAL_FEET
-                            ).build())
-                            .equipmentSlot((entity, stack) -> EquipmentSlot.BODY)
+    public static final Item HORSESHOE = registerItem("horseshoe", new HorseshoeItem(
+                    ArmorMaterials.IRON,
+                    AnimalArmorItem.Type.EQUESTRIAN,
+                    false,
+                    new Item.Settings().maxCount(1)
             )
     );
 

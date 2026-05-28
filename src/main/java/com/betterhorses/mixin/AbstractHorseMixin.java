@@ -3,6 +3,7 @@ package com.betterhorses.mixin;
 import com.betterhorses.BetterHorses;
 import com.betterhorses.config.CommonConfig;
 import com.betterhorses.duck.Boxable;
+import com.betterhorses.duck.HorseshoeEquipable;
 import com.betterhorses.networking.payload.MountPayload;
 import com.betterhorses.util.ModDataComponents;
 import com.betterhorses.util.ModTags;
@@ -12,6 +13,7 @@ import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.NbtComponent;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
@@ -21,6 +23,8 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
@@ -120,5 +124,20 @@ public abstract class AbstractHorseMixin extends AnimalEntity implements Boxable
             return original + 0.06D;
         }
         return original;
+    }
+
+    @Inject(
+            method = "interactMob",
+            at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/passive/AbstractHorseEntity;canUseSlot(Lnet/minecraft/entity/EquipmentSlot;)Z"),
+            cancellable = true
+    )
+    private void allowHorseshoeUseOnEntity(PlayerEntity player, Hand hand, CallbackInfoReturnable<ActionResult> cir) {
+        ItemStack stack = player.getStackInHand(hand);
+        if (this.canUseSlot(EquipmentSlot.BETTER_HORSES_ANIMAL_FEET) && stack.isIn(ModTags.Items.HORSESHOE)
+                && !((HorseshoeEquipable) this).better_Horses_1_21_1$hasHorseshoe() && player.getVehicle() != this) {
+            this.equipLootStack(EquipmentSlot.BETTER_HORSES_ANIMAL_FEET, stack.copyWithCount(1));
+            stack.decrementUnlessCreative(1, player);
+            cir.setReturnValue(ActionResult.success(this.getWorld().isClient));
+        }
     }
 }

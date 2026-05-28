@@ -21,6 +21,7 @@ public class ModEnglishLanguageProvider extends FabricLanguageProvider {
         translations.add(ModItems.BREEDING_CHART, "Breeding Chart");
 
         translations.add("sounds.betterhorses.horsebox_unzip", "Horsebox Unzips");
+        translations.add("sounds.betterhorses.clipboard_use", "Clipboard Opens");
 
         translations.add("color.minecraft.horse.0", "White");
         translations.add("color.minecraft.horse.1", "Creamy");
@@ -41,6 +42,8 @@ public class ModEnglishLanguageProvider extends FabricLanguageProvider {
 
         translations.add("tag.item.betterhorses.horse_armor", "Horse Armors");
         translations.add("tag.item.betterhorses.stabilizes_horse", "Stabilizes Horse");
+        translations.add("tag.item.betterhorses.horseshoe", "Horseshoe");
+        translations.add("tag.item.betterhorses.foot_armor_and_horseshoe", "Animal Foot Enchantable");
 
         translations.add("text.betterhorses.info", "Info");
         translations.add("text.betterhorses.name", "Name: %s");
@@ -56,8 +59,11 @@ public class ModEnglishLanguageProvider extends FabricLanguageProvider {
         translations.add("text.betterhorses.child", "Child");
 
         translations.addEnchantment(ModEnchantments.JOUSTING, "Jousting");
+        translations.addEnchantment(ModEnchantments.SWIFT_HOOVES, "Swift Hooves");
 
         translations.add("attribute.name.player.mounted_entity_reach", "Mounted Entity Reach");
         translations.add("attribute.name.player.mounted_block_reach", "Mounted Block Reach");
+
+        translations.add("item.modifiers.animal_feet", "When on Animal Feet:");
     }
 }
